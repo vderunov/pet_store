@@ -3,11 +3,13 @@ export default class ModelProduct {
     this.controller = contr;
   }
 
-  async loadGoodsFromJSON() {
-    const response = await fetch('../../data/goods.json');
-    const out = await response.json();
-    this.addGoodsInLocalStorage(out);
-    this.controller.showAllGoods(out);
+  loadGoodsFromJSON() {
+    fetch('../../data/goods.json')
+      .then(res => res.json())
+      .then(out => {
+        this.addGoodsInLocalStorage(out);
+        this.controller.showAllGoods(out);
+      });
   }
 
   addGoodsInLocalStorage(out) {
