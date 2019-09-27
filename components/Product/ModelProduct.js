@@ -5,12 +5,7 @@ export default class ModelProduct {
 
   async loadGoodsFromJSON() {
     const response = await fetch('../../data/goods.json');
-    const data = await response.json();
-    return data;
-  }
-
-  async saveGoodsFromJSON() {
-    const out = await this.loadGoodsFromJSON();
+    const out = await response.json();
     this.addGoodsInLocalStorage(out);
     this.controller.showAllGoods(out);
   }
