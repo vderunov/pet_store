@@ -1,4 +1,4 @@
-export class ModelCategory {
+export default class ModelCategory {
   constructor(contr) {
     this.controller = contr;
   }

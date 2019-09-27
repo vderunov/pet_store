@@ -1,4 +1,4 @@
-export class ViewSearch {
+export default class ViewSearch {
   constructor(contr) {
     this.controller = contr;
   }

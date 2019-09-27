@@ -1,4 +1,4 @@
-export class ModelProduct {
+export default class ModelProduct {
   constructor(contr) {
     this.controller = contr;
     this.data = {

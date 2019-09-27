@@ -1,8 +1,8 @@
-import { ModelCategory } from './ModelCategory.js';
-import { ViewCategory } from './ViewCategory.js';
-import { ControllerProduct } from './../../App/main.js';
+import ModelCategory from './ModelCategory.js';
+import ViewCategory from './ViewCategory.js';
+import { ControllerProduct } from '../../App/main.js';
 
-export class ControllerCategory {
+export default class ControllerCategory {
   constructor() {
     this.ControllerProduct = new ControllerProduct();
     this.view = new ViewCategory(this);
@@ -15,8 +15,8 @@ export class ControllerCategory {
     this.view.addEventOnNav();
   }
 
-  choosePet() {
-    const pet = event.target.dataset.pet;
+  choosePet(event) {
+    const { pet } = event.target.dataset;
     switch (pet) {
       case 'cats':
         this.model.makeCategory('cat');
@@ -30,7 +30,7 @@ export class ControllerCategory {
       case 'birds':
         this.model.makeCategory('bird');
         break;
-      case 'all':
+      default:
         this.model.makeCategory('all');
         break;
     }

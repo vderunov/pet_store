@@ -1,4 +1,4 @@
-export class ViewCategory {
+export default class ViewCategory {
   constructor(contr) {
     this.controller = contr;
   }

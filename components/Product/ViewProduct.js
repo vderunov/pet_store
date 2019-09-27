@@ -1,4 +1,4 @@
-export class ViewProduct {
+export default class ViewProduct {
   constructor(contr) {
     this.controller = contr;
   }

@@ -1,7 +1,7 @@
-import { ModelProduct } from './ModelProduct.js';
-import { ViewProduct } from './ViewProduct.js';
+import ModelProduct from './ModelProduct.js';
+import ViewProduct from './ViewProduct.js';
 
-export class ControllerProduct {
+export default class ControllerProduct {
   constructor() {
     this.model = new ModelProduct(this);
     this.view = new ViewProduct(this);

@@ -1,4 +1,4 @@
-export class ModelSearch {
+export default class ModelSearch {
   constructor(contr) {
     this.controller = contr;
   }
