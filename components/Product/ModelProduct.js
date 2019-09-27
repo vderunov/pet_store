@@ -1,19 +1,18 @@
 export default class ModelProduct {
   constructor(contr) {
     this.controller = contr;
-    this.data = {
-      pets: []
-    };
   }
 
-  loadGoodsFromJSON() {
-    fetch('../../data/goods.json')
-      .then(res => res.json())
-      .then(out => {
-        this.addGoodsInLocalStorage(out);
-        this.data.pets = out;
-        this.controller.showAllGoods(this.data.pets);
-      });
+  async loadGoodsFromJSON() {
+    const response = await fetch('../../data/goods.json');
+    const data = await response.json();
+    return data;
+  }
+
+  async saveGoodsFromJSON() {
+    const out = await this.loadGoodsFromJSON();
+    this.addGoodsInLocalStorage(out);
+    this.controller.showAllGoods(out);
   }
 
   addGoodsInLocalStorage(out) {

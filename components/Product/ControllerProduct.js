@@ -10,6 +10,7 @@ export default class ControllerProduct {
 
   initJSON() {
     this.model.loadGoodsFromJSON();
+    this.model.saveGoodsFromJSON();
   }
 
   showAllGoods(data) {
