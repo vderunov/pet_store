@@ -11,12 +11,7 @@ body {
   font-size: 14px;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1 {
   font-family: 'Amatic SC', cursive;
 }
 
@@ -31,8 +26,20 @@ h6 {
   justify-content: center;
 }
 
+#category {
+  margin-bottom: 5px;
+}
+
 .card {
   width: 20%;
   padding: 5px;
   margin: 5px;
+}
+
+.brand-logo i {
+  padding-left: 10px;
+}
+
+#root-search {
+  width: 30%;
 }

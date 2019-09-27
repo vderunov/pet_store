@@ -7,7 +7,7 @@ export default class ViewCategory {
     document.querySelector('#category').innerHTML = `
       <nav>
       <div class="nav-wrapper">
-        <a href="#" class="brand-logo">Logo</a>
+        <a href="#" class="brand-logo"><i class="large material-icons">insert_emoticon</i></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <li><a href="#" data-pet="cats" class="waves-effect waves-light btn">Cats</a></li>
           <li><a href="#" data-pet="dogs" class="waves-effect waves-light btn">Dogs</a></li>
