@@ -24,4 +24,8 @@ export default class ControllerProduct {
   getActiveCase() {
     return JSON.parse(localStorage.getItem('actualGoods'));
   }
+
+  getStock() {
+    return JSON.parse(localStorage.getItem('goods'));
+  }
 }

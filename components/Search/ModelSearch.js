@@ -5,7 +5,7 @@ export default class ModelSearch {
 
   makeSortByInput(letters) {
     const val = letters.trim();
-    const data = JSON.parse(localStorage.getItem('goods'));
+    const data = JSON.parse(localStorage.getItem('category'));
     const collectionPet = [];
     if (val !== '') {
       const regexp = new RegExp(`\\b${val}`, 'gi');

@@ -6,6 +6,7 @@ export default class ViewSearch {
   render() {
     document.querySelector('#root-search').innerHTML = `
     <div class="uk-margin uk-padding-small">
+    <p>Search in selected category</p>
     <form class="uk-search uk-search-default">
         <span uk-search-icon></span>
         <input id="search" class="uk-search-input" type="search" placeholder="Search...">

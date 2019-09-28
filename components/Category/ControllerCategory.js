@@ -6,6 +6,7 @@ export default class ControllerCategory {
     this.router = router.controllerProduct.showAllGoods.bind(
       router.controllerProduct
     );
+
     this.view = new ViewCategory(this);
     this.model = new ModelCategory(this);
     this.init();
@@ -38,6 +39,7 @@ export default class ControllerCategory {
   }
 
   showCategory(collectionPet) {
+    localStorage.setItem('category', JSON.stringify(collectionPet));
     this.router(collectionPet);
   }
 }
