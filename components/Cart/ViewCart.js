@@ -17,7 +17,7 @@ export default class ViewCart {
     this.cart = document.querySelector('.cart');
     this.controller.checkCart();
     if (localStorage.getItem('cart')) {
-      this.cart.src = './data/img/fullcart.png';
+      // this.cart.src = './data/img/fullcart.png';
     }
     this.renderCart();
   }
