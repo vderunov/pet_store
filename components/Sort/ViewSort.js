@@ -5,17 +5,27 @@ export default class ViewSort {
 
   render() {
     document.querySelector('#sort').innerHTML = `
-    <a class="waves-effect waves-light btn-small"><i class="material-icons right">arrow_drop_up</i>Sort by price</a>
-    <a class="waves-effect waves-light btn-small"><i class="material-icons right">arrow_drop_down</i>Sort by price</a>
-       `;
+    <button class="uk-button uk-button-default uk-button-small uk-margin-small-left" data-btn="up">price increase</button>
+    <button class="uk-button uk-button-default uk-button-small" data-btn="down">price decrease</button>
+    <button class="uk-button uk-button-default uk-button-small" data-btn="quantity">quantity switching</button>
+  
+    <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
+    <label><input class="uk-checkbox" type="checkbox" checked> A</label>
+    <label><input class="uk-checkbox" type="checkbox"> B</label>
+    <button class="uk-button uk-button-default uk-button-small">apply</button>
+    </div>
+    `;
   }
 
-  // addEventOnNav() {
-  //   document
-  //     .querySelector('nav')
-  //     .addEventListener(
-  //       'click',
-  //       this.controller.choosePet.bind(this.controller)
-  //     );
-  // }
+  addEventOnNav() {
+    document
+      .querySelector('[data-btn="up"]')
+      .addEventListener('click', this.controller.sortBy.bind(this.controller));
+    document
+      .querySelector('[data-btn="down"]')
+      .addEventListener('click', this.controller.sortBy.bind(this.controller));
+    document
+      .querySelector('[data-btn="quantity"]')
+      .addEventListener('click', this.controller.sortBy.bind(this.controller));
+  }
 }

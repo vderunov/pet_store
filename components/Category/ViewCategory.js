@@ -1,28 +1,27 @@
+// import Templater from '../../src/Templater.js';
+
 export default class ViewCategory {
   constructor(contr) {
+    // this.templater = new Templater('../components/Category/Category.html');
     this.controller = contr;
   }
 
   render() {
     document.querySelector('#category').innerHTML = `
-      <nav>
-      <div class="nav-wrapper">
-        <a href="#" class="brand-logo"><i class="large material-icons">insert_emoticon</i></a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="#" data-pet="cats" class="waves-effect waves-light btn">Cats</a></li>
-          <li><a href="#" data-pet="dogs" class="waves-effect waves-light btn">Dogs</a></li>
-          <li><a href="#" data-pet="fish" class="waves-effect waves-light btn">Fish</a></li>
-          <li><a href="#" data-pet="birds" class="waves-effect waves-light btn">Birds</a></li>
-          <li><a href="#" data-pet="all" class="waves-effect waves-light btn">all</a></li>
-        </ul>
-      </div>
-    </nav>
-       `;
+    <ul class="uk-breadcrumb uk-padding-small">
+      <li><button class="uk-button uk-button-default" data-pet="cats">Cats</button></li>
+      <li><button class="uk-button uk-button-default" data-pet="dogs">Dogs</button></li>
+      <li><button class="uk-button uk-button-default" data-pet="fish">Fish</button></li>
+      <li><button class="uk-button uk-button-default" data-pet="birds">Birds</button></li>
+      <li><button class="uk-button uk-button-default" data-pet="all">All</button></li>
+    </ul>
+    `;
+    // this.templater.load(null, document.querySelector('#category'));
   }
 
   addEventOnNav() {
     document
-      .querySelector('nav')
+      .querySelector('#category')
       .addEventListener(
         'click',
         this.controller.choosePet.bind(this.controller)

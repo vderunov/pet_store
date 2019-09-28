@@ -4,7 +4,7 @@ export default class ModelProduct {
   }
 
   loadGoodsFromJSON() {
-    fetch('../../data/goods.json')
+    fetch('data/goods.json')
       .then(res => res.json())
       .then(out => {
         this.addGoodsInLocalStorage(out);

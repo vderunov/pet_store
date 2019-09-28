@@ -1,12 +1,13 @@
 import ModelSearch from './ModelSearch.js';
 import ViewSearch from './ViewSearch.js';
-import { ControllerProduct } from '../../App/main.js';
 
 export default class ControllerSearch {
-  constructor() {
+  constructor(router) {
+    this.router = router.controllerProduct.showAllGoods.bind(
+      router.controllerProduct
+    );
     this.model = new ModelSearch(this);
     this.view = new ViewSearch(this);
-    this.ControllerProduct = new ControllerProduct();
     this.showNavSearch();
   }
 
@@ -20,6 +21,6 @@ export default class ControllerSearch {
   }
 
   showSortByInput(collectionPet) {
-    this.ControllerProduct.showAllGoods(collectionPet);
+    this.router(collectionPet);
   }
 }

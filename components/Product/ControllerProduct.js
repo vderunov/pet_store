@@ -13,6 +13,15 @@ export default class ControllerProduct {
   }
 
   showAllGoods(data) {
+    this.setActiveCase(data);
     this.view.render(data);
+  }
+
+  setActiveCase(data) {
+    localStorage.setItem('actualGoods', JSON.stringify(data));
+  }
+
+  getActiveCase() {
+    return JSON.parse(localStorage.getItem('actualGoods'));
   }
 }

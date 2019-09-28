@@ -1,28 +1,15 @@
+import Templater from '../../src/Templater.js';
+
 export default class ViewProduct {
-  constructor(contr) {
-    this.controller = contr;
+  constructor() {
+    this.templater = new Templater('../components/Product/Product.html');
   }
 
   render(data) {
-    let str = '';
+    const goods = document.querySelector('#goods');
+    goods.innerHTML = '';
     data.forEach(elem => {
-      str += `
-        <div class="card">
-          <div class="card-image">
-            <img src="${elem.url}">
-            <h1 class="card-title">${elem.name}</h1>
-         </div>
-          <div class="card-content">
-          <span class="card-title">Price: ${elem.price} USD</span>
-          <span class="card-title">Gender: ${elem.gender}</span>
-          <span class="card-title">Quantity: ${elem.quantity}</span>
-       </div>
-          <div class="card-action">
-          <a class="waves-effect waves-light btn-small">Buy</a>
-          </div>
-      </div>
-       `;
+      this.templater.load(elem, goods);
     });
-    document.querySelector('#goods').innerHTML = str;
   }
 }

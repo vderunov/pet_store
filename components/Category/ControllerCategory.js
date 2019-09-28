@@ -1,16 +1,17 @@
 import ModelCategory from './ModelCategory.js';
 import ViewCategory from './ViewCategory.js';
-import { ControllerProduct } from '../../App/main.js';
 
 export default class ControllerCategory {
-  constructor() {
-    this.ControllerProduct = new ControllerProduct();
+  constructor(router) {
+    this.router = router.controllerProduct.showAllGoods.bind(
+      router.controllerProduct
+    );
     this.view = new ViewCategory(this);
     this.model = new ModelCategory(this);
-    this.showNavBar();
+    this.init();
   }
 
-  showNavBar() {
+  init() {
     this.view.render();
     this.view.addEventOnNav();
   }
@@ -37,6 +38,6 @@ export default class ControllerCategory {
   }
 
   showCategory(collectionPet) {
-    this.ControllerProduct.showAllGoods(collectionPet);
+    this.router(collectionPet);
   }
 }
