@@ -420,7 +420,7 @@
     "quantity": 5,
     "ageMonth": 2,
     "weightKg": 0.2,
-    "color": ["blue", "red"],
+    "color": ["blue", "red", "steelblue"],
     "gender": "male",
     "lifetimeYears": 3,
     "rapacity": true,

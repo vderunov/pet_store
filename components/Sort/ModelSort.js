@@ -38,6 +38,8 @@ export default class ModelSort {
       [prop2]: setProp2
     };
 
+    this.collectionPet = [];
+
     if (prop1 === 'all') {
       return this.controller.delCheckbox();
     }
@@ -68,7 +70,13 @@ export default class ModelSort {
 
     for (const key in obj) {
       data.forEach(elem => {
-        if (String(elem[key]) === String(obj[key])) {
+        if (Array.isArray(elem[key])) {
+          elem[key].forEach(el => {
+            if (el === obj[key]) {
+              this.collectionPet.push(elem);
+            }
+          });
+        } else if (elem[key] === obj[key]) {
           this.collectionPet.push(elem);
         }
       });
@@ -86,15 +94,25 @@ export default class ModelSort {
 
   delCheckBox(obj, dataCategoryLocalStorage) {
     const arr = new Set([]);
+
     for (const key in obj) {
       this.collectionPet.map(elem => {
-        if (String(elem[key]) !== String(obj[key])) {
+        if (Array.isArray(elem[key])) {
+          elem[key].forEach(el => {
+            if (el === obj[key]) {
+              arr.add(elem);
+            }
+          });
+        } else if (elem[key] !== obj[key]) {
           arr.add(elem);
         }
       });
       this.collectionPet = [];
     }
+
     this.collectionPet = [...arr];
+
+    console.log(this.collectionPet);
 
     if (this.collectionPet.length) {
       this.controller.showSortByPrice(this.collectionPet);

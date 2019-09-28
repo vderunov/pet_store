@@ -11,8 +11,6 @@ export default class ControllerSort {
     this.routerShowSorterGoods = router.controllerProduct.showAllGoods.bind(
       router.controllerProduct
     );
-    this.view = new ViewSort(this);
-    this.model = new ModelSort(this);
     this.init();
   }
 

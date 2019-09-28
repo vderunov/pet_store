@@ -1,5 +1,5 @@
 <div>
-  <div class="uk-card uk-card-default">
+  <div class="uk-card uk-card-default uk-card-hover">
     <div class="uk-card-media-top">
       <img src="{{ url }}" alt="" />
     </div>
@@ -8,7 +8,10 @@
       <p>Price: {{ price }} USD</p>
       <p>Gender: {{ gender }}</p>
       <p>Quantity: {{ quantity }}</p>
-      <button class="uk-button uk-button-primary">buy</button>
+      <!-- <p>Color: {{ color }}</p> -->
+      <button class="uk-button uk-button-primary buy" data-id="{{ id }}">
+        buy
+      </button>
     </div>
   </div>
 </div>
