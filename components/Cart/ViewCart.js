@@ -9,15 +9,15 @@ export default class ViewCart {
       .querySelector('#goods')
       .addEventListener(
         'click',
-        this.controller.addToLocalStorageCart.bind(this.controller)
+        this.controller.getProductId.bind(this.controller)
       );
   }
 
   init() {
     this.renderCart();
     this.renderListInCart();
+    this.addModalHandler();
     this.cart = document.querySelector('.cart');
-    console.log('ViewCart init =>> checkCart');
     this.controller.checkCart();
     if (localStorage.getItem('cart')) {
       this.cart.src = './data/img/icon_cart_full.svg';
@@ -25,7 +25,6 @@ export default class ViewCart {
   }
 
   renderCart() {
-    console.log('ViewCart =>> renderCart');
     let str = '';
     str += `
       <div id="modal-overflow" uk-modal>
@@ -60,30 +59,40 @@ export default class ViewCart {
   }
 
   renderListInCart(cart) {
-    const localCart = cart || JSON.parse(localStorage.getItem('cart'));
+    this.localCart = cart || JSON.parse(localStorage.getItem('cart'));
     this.data = JSON.parse(localStorage.getItem('goods'));
-    console.log('ViewCart =>> renderListInCart');
+
     let str = '';
-    for (const key in localCart) {
+    for (const key in this.localCart) {
       this.data.forEach(elem => {
         if (elem.id === Number(key)) {
           str += `<tr>
             <td>
-            <button class="cart-btns"><img src="./data/img/icon_del.svg" alt="icon-del" /></button>
+            <button class="cart-btns"><img src="./data/img/icon_del.svg" alt="icon-del" class="delete" data-art="${key}" /></button>
         <img class="uk-preserve-width uk-border-circle cart-img" src="../../data/img/pets/${
           elem.type
         }/${elem.name}.jpg" width="40" alt="">
             <p class="uk-text-truncate">Breed: ${elem.name}</p>
             <p class="uk-text-truncate">Price: ${elem.price} USD</p>
-            <button class="cart-btns"><img src="./data/img/icon_minus.svg" alt="icon-del" /></button>
-            <p class="uk-text-truncate">${localCart[key]}</p>
-            <button class="cart-btns"><img src="./data/img/icon_minus.svg" alt="icon-plus" /></button>
-            <p class="uk-text-truncate">${localCart[key] * elem.price} USD</p>
+            <button class="cart-btns"><img src="./data/img/icon_minus.svg" alt="icon-del" data-art="${key}" class="minus" /></button>
+            <p class="uk-text-truncate">${this.localCart[key]}</p>
+            <button class="cart-btns"><img src="./data/img/icon_plus.svg" alt="icon-plus" data-art="${key}" class="plus" /></button>
+            <p class="uk-text-truncate">${this.localCart[key] *
+              elem.price} USD</p>
          </td>
     </tr>`;
         }
       });
     }
     document.querySelector('#listInCart').innerHTML = str;
+  }
+
+  addModalHandler() {
+    document
+      .querySelector('#modal-overflow')
+      .addEventListener(
+        'click',
+        this.controller.modalHandler.bind(this.controller)
+      );
   }
 }

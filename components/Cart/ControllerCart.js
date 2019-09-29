@@ -14,19 +14,20 @@ export default class ControllerCart {
     this.checkCart();
   }
 
-  addToLocalStorageCart(e) {
-    console.log('ControllerCart =>> addToLocalStorageCart --- OUT IF');
+  getProductId(e) {
     if (e.target.classList.contains('buy')) {
-      console.log('ControllerCart =>> addToLocalStorageCart --- INSIDE IF');
       e.stopPropagation();
-      this.addToCart(e.target.getAttribute('data-id'));
-      localStorage.setItem('cart', JSON.stringify(this.cart));
+      this.increaseQuantity(e.target.getAttribute('data-id'));
+      this.saveToLocalStorageCart(this.cart);
       this.view.renderListInCart(this.cart);
     }
   }
 
-  addToCart(id) {
-    console.log('ControllerCart =>> addToCart');
+  saveToLocalStorageCart(obj) {
+    localStorage.setItem('cart', JSON.stringify(obj));
+  }
+
+  increaseQuantity(id) {
     if (this.cart[id]) {
       this.cart[id]++;
     } else {
@@ -35,10 +36,34 @@ export default class ControllerCart {
   }
 
   checkCart() {
-    console.log('ControllerCart =>> checkCart --- OUT IF');
     if (localStorage.getItem('cart')) {
-      console.log('ControllerCart =>> checkCart --- INSIDE IF');
       this.cart = JSON.parse(localStorage.getItem('cart'));
+    }
+  }
+
+  modalHandler(event) {
+    const idProduct = event.target.dataset.art;
+
+    if (event.target.classList.contains('plus')) {
+      this.model.test();
+      event.stopPropagation();
+      this.cart[idProduct]++;
+      this.saveToLocalStorageCart(this.cart);
+      this.view.renderListInCart(this.cart);
+    } else if (event.target.classList.contains('minus')) {
+      event.stopPropagation();
+      if (this.cart[idProduct] > 1) {
+        this.cart[idProduct]--;
+      } else {
+        delete this.cart[idProduct];
+      }
+      this.saveToLocalStorageCart(this.cart);
+      this.view.renderListInCart(this.cart);
+    } else if (event.target.classList.contains('delete')) {
+      delete this.cart[idProduct];
+      this.saveToLocalStorageCart(this.cart);
+      this.view.renderListInCart(this.cart);
+      event.stopPropagation();
     }
   }
 }
