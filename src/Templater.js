@@ -8,10 +8,13 @@ export default class Templater {
   }
 
   load(objProduct, domNode) {
+    const node = domNode;
     let stringHTML = this.template;
+
     for (const key in objProduct) {
-      stringHTML = stringHTML.replace(`{{ ${key} }}`, objProduct[key]);
+      const regexp = new RegExp(`{{ ${key} }}`, 'gi');
+      stringHTML = stringHTML.replace(regexp, objProduct[key]);
     }
-    domNode.innerHTML += stringHTML;
+    node.innerHTML += stringHTML;
   }
 }

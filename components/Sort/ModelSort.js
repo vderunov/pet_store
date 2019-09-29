@@ -112,8 +112,6 @@ export default class ModelSort {
 
     this.collectionPet = [...arr];
 
-    console.log(this.collectionPet);
-
     if (this.collectionPet.length) {
       this.controller.showSortByPrice(this.collectionPet);
     } else {

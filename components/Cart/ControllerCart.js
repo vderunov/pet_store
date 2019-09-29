@@ -3,8 +3,8 @@ import ViewCart from './ViewCart.js';
 
 export default class ControllerCart {
   constructor() {
-    this.model = new ModelCart(this);
     this.view = new ViewCart(this);
+    this.model = new ModelCart(this);
     this.cart = {};
     this.init();
   }
@@ -15,15 +15,18 @@ export default class ControllerCart {
   }
 
   addToLocalStorageCart(e) {
+    console.log('ControllerCart =>> addToLocalStorageCart --- OUT IF');
     if (e.target.classList.contains('buy')) {
+      console.log('ControllerCart =>> addToLocalStorageCart --- INSIDE IF');
+      e.stopPropagation();
       this.addToCart(e.target.getAttribute('data-id'));
       localStorage.setItem('cart', JSON.stringify(this.cart));
-      this.view.renderCart(this.cart);
-      e.stopPropagation();
+      this.view.renderListInCart(this.cart);
     }
   }
 
   addToCart(id) {
+    console.log('ControllerCart =>> addToCart');
     if (this.cart[id]) {
       this.cart[id]++;
     } else {
@@ -32,7 +35,9 @@ export default class ControllerCart {
   }
 
   checkCart() {
+    console.log('ControllerCart =>> checkCart --- OUT IF');
     if (localStorage.getItem('cart')) {
+      console.log('ControllerCart =>> checkCart --- INSIDE IF');
       this.cart = JSON.parse(localStorage.getItem('cart'));
     }
   }

@@ -3,6 +3,38 @@
   height: 30px;
 }
 
-button[type='button'] {
+.cart-img {
+  width: 100px;
+  height: 100px;
+}
+
+button[href='#modal-overflow'] {
   border: none;
+}
+
+div.uk-modal-dialog {
+  width: 800px;
+}
+
+img.uk-border-circle {
+  border-radius: 0;
+}
+
+img[alt='icon-del'],
+img[alt='icon-minus'],
+img[alt='icon-plus'] {
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+
+button.cart-btns {
+  background: none;
+  border: none;
+}
+
+td {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }

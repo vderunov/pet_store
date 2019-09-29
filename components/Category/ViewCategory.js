@@ -15,10 +15,9 @@ export default class ViewCategory {
       <li><button class="uk-button uk-button-default" data-pet="birds">Birds</button></li>
       <li><button class="uk-button uk-button-default" data-pet="all">All</button></li>
       </ul>
-      <button class="uk-button uk-button-default uk-margin-small-right" type="button"
-      uk-toggle="target: #modal-example">
-      <img src="./data/img/emptycart.png" alt="emptycart" class="cart" />
-     </button>
+      <button class="uk-button uk-button-default" href="#modal-overflow" uk-toggle>
+      <img src="./data/img/icon_cart_empty.svg" alt="icon_cart_empty" class="cart" />
+</button>
     `;
     // this.templater.load(null, document.querySelector('#category'));
   }

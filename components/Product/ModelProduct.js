@@ -4,7 +4,9 @@ export default class ModelProduct {
   }
 
   loadGoodsFromJSON() {
-    fetch('./data/goods.json')
+    fetch(
+      'https://cors-anywhere.herokuapp.com/https://gentle-coast-49966.herokuapp.com/get-goods'
+    )
       .then(res => res.json())
       .then(out => {
         this.addGoodsInLocalStorage(out);
