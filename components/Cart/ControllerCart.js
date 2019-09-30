@@ -13,11 +13,18 @@ export default class ControllerCart {
     this.model.checkCart();
   }
 
+  changeIconCart() {
+    const cart = document.querySelector('.cart');
+    if (localStorage.getItem('cart')) {
+      cart.src = './data/img/icon_cart_full.svg';
+    }
+  }
+
   addProductToCart(e) {
     if (e.target.classList.contains('buy')) {
       e.stopPropagation();
       this.model.increaseQuantity(e.target.getAttribute('data-id'));
-      this.view.changeIconCart();
+      this.changeIconCart();
     }
   }
 

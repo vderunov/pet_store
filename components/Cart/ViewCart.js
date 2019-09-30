@@ -1,7 +1,6 @@
 export default class ViewCart {
   constructor(contr) {
     this.controller = contr;
-    this.cart = document.querySelector('.cart');
     this.init();
   }
 
@@ -18,13 +17,6 @@ export default class ViewCart {
     this.renderCart();
     this.renderListInCart();
     this.addModalHandler();
-    this.changeIconCart();
-  }
-
-  changeIconCart() {
-    if (localStorage.getItem('cart')) {
-      this.cart.src = './data/img/icon_cart_full.svg';
-    }
   }
 
   renderCart() {

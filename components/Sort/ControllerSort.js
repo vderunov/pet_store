@@ -35,13 +35,13 @@ export default class ControllerSort {
         this.model.makeSetProperties('fur', 'gender', data);
         break;
       case 'dogs':
-        this.model.makeSetProperties('weightKg', 'specialization', data);
+        this.model.makeSetProperties('weightkg', 'specialization', data);
         break;
       case 'fish':
         this.model.makeSetProperties('color', 'lifetimeYears', data);
         break;
       case 'birds':
-        this.model.makeSetProperties('talking', 'weightKg', data);
+        this.model.makeSetProperties('talking', 'weightkg', data);
         break;
       default:
         this.model.makeSetProperties('all');
