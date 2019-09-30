@@ -5,7 +5,8 @@ export default class ModelProduct {
 
   loadGoodsFromJSON() {
     fetch(
-      'https://cors-anywhere.herokuapp.com/https://gentle-coast-49966.herokuapp.com/get-goods'
+      // 'https://cors-anywhere.herokuapp.com/https://gentle-coast-49966.herokuapp.com/get-goods'
+      '/data/goods.json'
     )
       .then(res => res.json())
       .then(out => {
