@@ -18,7 +18,6 @@ export default class ViewCart {
     this.renderListInCart();
     this.addModalHandler();
     this.cart = document.querySelector('.cart');
-    this.controller.checkCart();
     if (localStorage.getItem('cart')) {
       this.cart.src = './data/img/icon_cart_full.svg';
     }

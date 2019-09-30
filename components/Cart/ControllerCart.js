@@ -5,65 +5,38 @@ export default class ControllerCart {
   constructor() {
     this.view = new ViewCart(this);
     this.model = new ModelCart(this);
-    this.cart = {};
     this.init();
   }
 
   init() {
     this.view.addHandlerToBuyBtns();
-    this.checkCart();
+    this.model.checkCart();
   }
 
   getProductId(e) {
     if (e.target.classList.contains('buy')) {
       e.stopPropagation();
-      this.increaseQuantity(e.target.getAttribute('data-id'));
-      this.saveToLocalStorageCart(this.cart);
-      this.view.renderListInCart(this.cart);
-    }
-  }
-
-  saveToLocalStorageCart(obj) {
-    localStorage.setItem('cart', JSON.stringify(obj));
-  }
-
-  increaseQuantity(id) {
-    if (this.cart[id]) {
-      this.cart[id]++;
-    } else {
-      this.cart[id] = 1;
-    }
-  }
-
-  checkCart() {
-    if (localStorage.getItem('cart')) {
-      this.cart = JSON.parse(localStorage.getItem('cart'));
+      this.model.increaseQuantity(e.target.getAttribute('data-id'));
     }
   }
 
   modalHandler(event) {
     const idProduct = event.target.dataset.art;
+    const { target } = event;
 
-    if (event.target.classList.contains('plus')) {
-      this.model.test();
+    if (target.classList.contains('plus')) {
+      this.model.plusProduct(idProduct);
       event.stopPropagation();
-      this.cart[idProduct]++;
-      this.saveToLocalStorageCart(this.cart);
-      this.view.renderListInCart(this.cart);
-    } else if (event.target.classList.contains('minus')) {
+    } else if (target.classList.contains('minus')) {
+      this.model.minusProduct(idProduct);
       event.stopPropagation();
-      if (this.cart[idProduct] > 1) {
-        this.cart[idProduct]--;
-      } else {
-        delete this.cart[idProduct];
-      }
-      this.saveToLocalStorageCart(this.cart);
-      this.view.renderListInCart(this.cart);
-    } else if (event.target.classList.contains('delete')) {
-      delete this.cart[idProduct];
-      this.saveToLocalStorageCart(this.cart);
-      this.view.renderListInCart(this.cart);
+    } else if (target.classList.contains('delete')) {
+      this.model.deleteProduct(idProduct);
       event.stopPropagation();
     }
+  }
+
+  renderViewCart(cart) {
+    this.view.renderListInCart(cart);
   }
 }
