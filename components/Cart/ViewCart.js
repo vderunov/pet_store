@@ -1,6 +1,7 @@
 export default class ViewCart {
   constructor(contr) {
     this.controller = contr;
+    this.cart = document.querySelector('.cart');
     this.init();
   }
 
@@ -9,7 +10,7 @@ export default class ViewCart {
       .querySelector('#goods')
       .addEventListener(
         'click',
-        this.controller.getProductId.bind(this.controller)
+        this.controller.addProductToCart.bind(this.controller)
       );
   }
 
@@ -17,7 +18,10 @@ export default class ViewCart {
     this.renderCart();
     this.renderListInCart();
     this.addModalHandler();
-    this.cart = document.querySelector('.cart');
+    this.changeIconCart();
+  }
+
+  changeIconCart() {
     if (localStorage.getItem('cart')) {
       this.cart.src = './data/img/icon_cart_full.svg';
     }

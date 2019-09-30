@@ -45,5 +45,13 @@ export default class ModelCart {
     delete this.cart[idProduct];
     this.saveToLocalStorageCart(this.cart);
     this.controller.renderViewCart(this.cart);
+
+    if (Object.keys(this.cart).length === 0) {
+      this.deleteCartFromLocalStorage();
+    }
+  }
+
+  deleteCartFromLocalStorage() {
+    localStorage.removeItem('cart');
   }
 }

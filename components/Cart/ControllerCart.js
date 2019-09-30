@@ -13,10 +13,11 @@ export default class ControllerCart {
     this.model.checkCart();
   }
 
-  getProductId(e) {
+  addProductToCart(e) {
     if (e.target.classList.contains('buy')) {
       e.stopPropagation();
       this.model.increaseQuantity(e.target.getAttribute('data-id'));
+      this.view.changeIconCart();
     }
   }
 
