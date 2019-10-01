@@ -1,11 +1,56 @@
 export default class ModelCart {
   constructor(contr) {
     this.controller = contr;
+    this.availableQuantityOfGoods;
+    this.isAvailableGoods;
     this.cart = {};
   }
 
+  checkAmountGoods(id) {
+    if (!this.cart[id]) {
+      this.isAvailableGoods = false;
+      this.increaseQuantity(id);
+    }
+
+    this.getAmountGoodsFromStock(id);
+
+    if (this.availableQuantityOfGoods > this.cart[id]) {
+      this.isAvailableGoods = true;
+      this.increaseQuantity(id);
+    } else {
+      this.setDisableOnButton(id);
+    }
+  }
+
+  setDisableOnButton(id) {
+    document
+      .querySelector(`[data-id="${id}"]`)
+      .setAttribute('disabled', 'disabled');
+  }
+
+  setAllDisabledBtn() {
+    for (const key in this.cart) {
+      if (this.cart[key] === this.getAmountGoodsFromStock(key)) {
+        document
+          .querySelector(`[data-id="${key}"]`)
+          .setAttribute('disabled', 'disabled');
+      }
+    }
+  }
+
+  getAmountGoodsFromStock(id) {
+    this.data = JSON.parse(localStorage.getItem('goods'));
+    this.data.forEach(elem => {
+      if (elem.id === Number(id)) {
+        this.availableQuantityOfGoods = elem.quantity;
+      }
+    });
+
+    return this.availableQuantityOfGoods;
+  }
+
   increaseQuantity(id) {
-    if (this.cart[id]) {
+    if (this.isAvailableGoods) {
       this.cart[id]++;
     } else {
       this.cart[id] = 1;

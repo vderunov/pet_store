@@ -11,6 +11,7 @@ export default class ViewSort {
     <button class="uk-button uk-button-default uk-button-small uk-margin-small-left" data-btn="up">price increase</button>
     <button class="uk-button uk-button-default uk-button-small" data-btn="down">price decrease</button>
     <button class="uk-button uk-button-default uk-button-small" data-btn="quantity">quantity switching</button>
+    <button class="uk-button uk-button-default uk-button-small uk-button-primary updateStock" ">Update product availability</button>
     <div id="checkbox" class="uk-margin-left uk-grid-small uk-child-width-auto uk-grid"></div>
   </div>
     `;

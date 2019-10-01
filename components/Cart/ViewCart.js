@@ -89,5 +89,12 @@ export default class ViewCart {
         'click',
         this.controller.modalHandler.bind(this.controller)
       );
+
+    document
+      .querySelector('.updateStock')
+      .addEventListener(
+        'click',
+        this.controller.setDisabledBtn.bind(this.controller)
+      );
   }
 }

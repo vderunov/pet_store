@@ -23,9 +23,13 @@ export default class ControllerCart {
   addProductToCart(e) {
     if (e.target.classList.contains('buy')) {
       e.stopPropagation();
-      this.model.increaseQuantity(e.target.getAttribute('data-id'));
+      this.model.checkAmountGoods(e.target.getAttribute('data-id'));
       this.changeIconCart();
     }
+  }
+
+  setDisabledBtn() {
+    this.model.setAllDisabledBtn();
   }
 
   modalHandler(event) {
