@@ -8,11 +8,12 @@ export default class ModelCart {
 
   getAmountGoodsCart() {
     const cart = JSON.parse(localStorage.getItem('cart'));
+    const counterCart = document.querySelector('#counter-cart');
 
     if (Object.values(cart).length) {
-      document.querySelector('#counter-cart').innerHTML = Object.values(
-        cart
-      ).reduce((a, b) => a + b);
+      counterCart.innerHTML = Object.values(cart).reduce((a, b) => a + b);
+    } else {
+      counterCart.innerHTML = '';
     }
   }
 
@@ -102,21 +103,22 @@ export default class ModelCart {
     } else {
       delete this.cart[idProduct];
     }
+
     this.saveToLocalStorageCart(this.cart);
     this.controller.renderViewCart(this.cart);
+    this.deleteCartFromLocalStorage();
   }
 
   deleteProduct(idProduct) {
     delete this.cart[idProduct];
     this.saveToLocalStorageCart(this.cart);
     this.controller.renderViewCart(this.cart);
-
-    if (Object.keys(this.cart).length === 0) {
-      this.deleteCartFromLocalStorage();
-    }
+    this.deleteCartFromLocalStorage();
   }
 
   deleteCartFromLocalStorage() {
-    localStorage.removeItem('cart');
+    if (Object.keys(this.cart).length === 0) {
+      localStorage.removeItem('cart');
+    }
   }
 }
