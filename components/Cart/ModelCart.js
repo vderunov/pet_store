@@ -6,35 +6,37 @@ export default class ModelCart {
     this.cart = {};
   }
 
+  getAmountGoodsCart() {
+    const cart = JSON.parse(localStorage.getItem('cart'));
+
+    if (Object.values(cart).length) {
+      document.querySelector('#counter-cart').innerHTML = Object.values(
+        cart
+      ).reduce((a, b) => a + b);
+    }
+  }
+
   checkAmountGoods(id) {
     if (!this.cart[id]) {
       this.isAvailableGoods = false;
-      this.increaseQuantity(id);
+      this.addToCart(id);
+      this.getAmountGoodsFromStock(id);
+      if (this.availableQuantityOfGoods === this.cart[id]) {
+        this.setDisableOnButton(id);
+      }
+      return;
     }
 
     this.getAmountGoodsFromStock(id);
 
     if (this.availableQuantityOfGoods > this.cart[id]) {
       this.isAvailableGoods = true;
-      this.increaseQuantity(id);
-    } else {
-      this.setDisableOnButton(id);
+      this.addToCart(id);
     }
-  }
 
-  setDisableOnButton(id) {
-    document
-      .querySelector(`[data-id="${id}"]`)
-      .setAttribute('disabled', 'disabled');
-  }
-
-  setAllDisabledBtn() {
-    for (const key in this.cart) {
-      if (this.cart[key] === this.getAmountGoodsFromStock(key)) {
-        document
-          .querySelector(`[data-id="${key}"]`)
-          .setAttribute('disabled', 'disabled');
-      }
+    if (this.availableQuantityOfGoods === this.cart[id]) {
+      this.setDisableOnButton(id);
+      return false;
     }
   }
 
@@ -49,7 +51,23 @@ export default class ModelCart {
     return this.availableQuantityOfGoods;
   }
 
-  increaseQuantity(id) {
+  setAllDisabledBtn() {
+    for (const key in this.cart) {
+      if (this.cart[key] === this.getAmountGoodsFromStock(key)) {
+        document
+          .querySelector(`[data-id="${key}"]`)
+          .setAttribute('disabled', 'disabled');
+      }
+    }
+  }
+
+  setDisableOnButton(id) {
+    document
+      .querySelector(`[data-id="${id}"]`, `.plus[data-art="${id}"]`)
+      .setAttribute('disabled', 'disabled');
+  }
+
+  addToCart(id) {
     if (this.isAvailableGoods) {
       this.cart[id]++;
     } else {
@@ -62,7 +80,8 @@ export default class ModelCart {
 
   checkCart() {
     if (localStorage.getItem('cart')) {
-      this.cart = JSON.parse(localStorage.getItem('cart'));
+      this.getAmountGoodsCart();
+      return (this.cart = JSON.parse(localStorage.getItem('cart')));
     }
   }
 
@@ -71,9 +90,10 @@ export default class ModelCart {
   }
 
   plusProduct(idProduct) {
-    this.cart[idProduct]++;
-    this.saveToLocalStorageCart(this.cart);
-    this.controller.renderViewCart(this.cart);
+    if (this.checkAmountGoods(idProduct)) {
+      this.cart[idProduct]++;
+      this.saveToLocalStorageCart(this.cart);
+    }
   }
 
   minusProduct(idProduct) {

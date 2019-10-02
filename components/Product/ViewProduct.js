@@ -6,7 +6,7 @@ export default class ViewProduct {
   }
 
   render(data) {
-    const goods = document.querySelector('#goods');
+    const goods = document.querySelector('#root-goods');
     goods.innerHTML = '';
     data.forEach(elem => {
       this.templater.load(elem, goods);

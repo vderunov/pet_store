@@ -5,6 +5,7 @@
 .cart {
   width: 30px;
   height: 30px;
+  margin: 0 0 0 20px;
 }
 
 .cart-img {
@@ -41,4 +42,20 @@ td {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.minus,
+.plus,
+.delete {
+  font-size: 40px;
+  cursor: pointer;
+  color: #1e87f0;
+}
+
+[disabled='disabled'] {
+  color: orange;
+}
+
+#counter-cart {
+  font-size: 20px;
 }

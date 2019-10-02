@@ -1,5 +1,8 @@
+// import Templater from '../../src/Templater.js';
+
 export default class ViewSearch {
   constructor(contr) {
+    // this.templater = new Templater('../components/Search/Search.html');
     this.controller = contr;
   }
 
@@ -12,7 +15,7 @@ export default class ViewSearch {
         <input id="search" class="uk-search-input" type="search" placeholder="Search...">
     </form>
 </div>
-          `;
+              `;
   }
 
   addEventOnSearch() {

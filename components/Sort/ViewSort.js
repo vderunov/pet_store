@@ -7,7 +7,8 @@ export default class ViewSort {
   }
 
   render() {
-    document.querySelector('#sort').innerHTML = `
+    document.querySelector('#root-sort').innerHTML = `
+    <div>
     <button class="uk-button uk-button-default uk-button-small uk-margin-small-left" data-btn="up">price increase</button>
     <button class="uk-button uk-button-default uk-button-small" data-btn="down">price decrease</button>
     <button class="uk-button uk-button-default uk-button-small" data-btn="quantity">quantity switching</button>
@@ -20,10 +21,10 @@ export default class ViewSort {
   renderCheckbox(obj) {
     let str = '';
     for (const key in obj) {
-      str += `<div><p>${key}`;
+      str += `<div class="uk-padding-small"><p>${key.toUpperCase()}:`;
       obj[key].forEach(e => {
         str += `
-        <label class="uk-margin-left"><input class="uk-checkbox uk-margin-right" type="checkbox" data-${key}="${e}" />${e}</label>`;
+        <label class="uk-margin-left"> / <input class="uk-checkbox uk-margin-right" type="checkbox" data-${key}="${e}" />${e}</label>`;
       });
       str += `</p></div>`;
       document.querySelector('#checkbox').innerHTML = str;
@@ -45,13 +46,13 @@ export default class ViewSort {
       .querySelector('[data-btn="quantity"]')
       .addEventListener('click', this.controller.sortBy.bind(this.controller));
     document
-      .querySelector('#category')
+      .querySelector('#root-category')
       .addEventListener(
         'click',
         this.controller.getProps.bind(this.controller)
       );
     document
-      .querySelector('#sort')
+      .querySelector('#root-sort')
       .addEventListener(
         'change',
         this.controller.getGoodsByProp.bind(this.controller)

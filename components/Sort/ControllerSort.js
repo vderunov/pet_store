@@ -8,7 +8,7 @@ export default class ControllerSort {
     this.routerActiveCase = router.controllerProduct.getActiveCase.bind(
       router.controllerProduct
     );
-    this.routerShowSorterGoods = router.controllerProduct.showAllGoods.bind(
+    this.routerShowGoods = router.controllerProduct.showAllGoods.bind(
       router.controllerProduct
     );
     this.init();
@@ -71,6 +71,6 @@ export default class ControllerSort {
   }
 
   showSortByPrice(collectionPet) {
-    this.routerShowSorterGoods(collectionPet);
+    this.routerShowGoods(collectionPet);
   }
 }

@@ -3,7 +3,7 @@ import ViewSearch from './ViewSearch.js';
 
 export default class ControllerSearch {
   constructor(router) {
-    this.router = router.controllerProduct.showAllGoods.bind(
+    this.routerShowGoods = router.controllerProduct.showAllGoods.bind(
       router.controllerProduct
     );
     this.model = new ModelSearch(this);
@@ -21,6 +21,6 @@ export default class ControllerSearch {
   }
 
   showSortByInput(collectionPet) {
-    this.router(collectionPet);
+    this.routerShowGoods(collectionPet);
   }
 }

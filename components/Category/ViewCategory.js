@@ -7,12 +7,12 @@ export default class ViewCategory {
   }
 
   render() {
-    this.templater.load(null, document.querySelector('#category'));
+    this.templater.load(null, document.querySelector('#root-category'));
   }
 
   addEventOnNav() {
     document
-      .querySelector('#category')
+      .querySelector('#root-category')
       .addEventListener(
         'click',
         this.controller.choosePet.bind(this.controller)

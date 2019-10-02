@@ -49,6 +49,7 @@ export default class ControllerCart {
   }
 
   renderViewCart(cart) {
+    this.model.getAmountGoodsCart();
     this.view.renderListInCart(cart);
   }
 }
