@@ -1,5 +1,5 @@
-import ModelCategory from './ModelCategory.js';
-import ViewCategory from './ViewCategory.js';
+import ModelCategory from './modelCategory.js';
+import ViewCategory from './viewCategory.js';
 
 export default class ControllerCategory {
   constructor(router) {

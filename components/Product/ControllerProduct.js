@@ -1,5 +1,5 @@
-import ModelProduct from './ModelProduct.js';
-import ViewProduct from './ViewProduct.js';
+import ModelProduct from './modelProduct.js';
+import ViewProduct from './viewProduct.js';
 
 export default class ControllerProduct {
   constructor() {

@@ -13,24 +13,28 @@ export default class Templater {
       });
   }
 
-  load(objProduct, domNode) {
+  load(objProduct, domNode, selector, event, fn) {
     if (this.isLoad) {
       this.show(objProduct, domNode);
     } else {
       this.isCatch = true;
       this.elements.push({
         objProduct,
-        domNode
+        domNode,
+        selector,
+        event,
+        fn
       });
     }
   }
+
   render() {
-    this.elements.forEach(({ objProduct, domNode }) => {
-      this.show(objProduct, domNode);
+    this.elements.forEach(({ objProduct, domNode, selector, event, fn }) => {
+      this.show(objProduct, domNode, selector, event, fn);
     });
   }
 
-  show(objProduct, domNode) {
+  show(objProduct, domNode, selector, event, fn) {
     const node = domNode;
     let stringHTML = this.template;
     for (const key in objProduct) {
@@ -38,5 +42,22 @@ export default class Templater {
       stringHTML = stringHTML.replace(regexp, objProduct[key]);
     }
     node.innerHTML += stringHTML;
+    this.addHandlers(selector, event, fn);
+  }
+
+  addHandlers(selectors = [], event, fn) {
+    if (selectors.length) {
+      selectors.forEach(elem => {
+        const node = document.querySelector(elem);
+        node.addEventListener(event, fn);
+      });
+    }
   }
 }
+
+// node.addEventListener(event, function listener() {
+//   // do something
+//   console.log(this);
+//   fn().bind(this);
+//   element.removeEventListener(event, listener);
+// });

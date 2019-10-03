@@ -1,7 +1,31 @@
-<div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
-  <label
-    ><input class="uk-checkbox" type="checkbox" checked />{{ prop1 }}</label
+<div>
+  <button
+    class="uk-button uk-button-default uk-button-small uk-margin-small-left"
+    data-btn="up"
+    uk-icon="icon: arrow-up"
   >
-  <label><input class="uk-checkbox" type="checkbox" />{{ prop2 }}</label>
-  <button class="uk-button uk-button-default uk-button-small">apply</button>
+    price increase
+  </button>
+  <button
+    class="uk-button uk-button-default uk-button-small"
+    uk-icon="icon: arrow-down"
+    data-btn="down"
+  >
+    price decrease
+  </button>
+  <button
+    class="uk-button uk-button-default uk-button-small"
+    data-btn="quantity"
+  >
+    quantity switching
+  </button>
+  <button
+    class="uk-button uk-button-default uk-button-small uk-button-primary updateStock"
+  >
+    Update product availability
+  </button>
+  <div
+    id="checkbox"
+    class="uk-margin-left uk-grid-small uk-child-width-auto uk-grid"
+  ></div>
 </div>

@@ -41,9 +41,9 @@ export default class ViewCart {
     <button class="uk-button uk-button-default uk-modal-close" type="button">
         Continue shopping
     </button>
-    <button class="uk-button uk-button-primary" type="button">
-        Buy
-    </button>
+    <button class="uk-button uk-button-primary" href="#modal-sections" uk-toggle
+    >buy</a
+  >
 </div>
 </div>
 </div>`;
@@ -87,11 +87,11 @@ export default class ViewCart {
         this.controller.modalHandler.bind(this.controller)
       );
 
-    document
-      .querySelector('.updateStock')
-      .addEventListener(
-        'click',
-        this.controller.setDisabledBtn.bind(this.controller)
-      );
+    // document
+    //   .querySelector('.updateStock')
+    //   .addEventListener(
+    //     'click',
+    //     this.controller.setDisabledBtn.bind(this.controller)
+    //   );
   }
 }

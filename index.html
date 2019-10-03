@@ -20,17 +20,14 @@
   </head>
 
   <body>
-    <div>
+    <div id="modal-sections" uk-modal></div>
+    <div class="uk-flex uk-margin-top space-around">
       <div
         id="root-category"
         class="uk-flex uk-flex-right@l uk-padding-small"
       ></div>
-      <a href="#modal-overflow" uk-toggle>
-        <img
-          src="./data/img/icon_cart_empty.svg"
-          alt="icon_cart_empty"
-          class="cart"
-        />
+      <div id="root-cart-icon"></div>
+      <a href="#modal-overflow" uk-icon="icon: cart" uk-toggle>
         <span id="counter-cart"></span>
       </a>
     </div>

@@ -1,8 +1,9 @@
-import ControllerSort from '../components/Sort/ControllerSort.js';
-import ControllerProduct from '../components/Product/ControllerProduct.js';
-import ControllerCategory from '../components/Category/ControllerCategory.js';
-import ControllerSearch from '../components/Search/ControllerSearch.js';
-import ControllerCart from '../components/Cart/ControllerCart.js';
+import ControllerSort from '../components/sort/ControllerSort.js';
+import ControllerProduct from '../components/product/controllerProduct.js';
+import ControllerCategory from '../components/category/controllerCategory.js';
+import ControllerSearch from '../components/search/controllerSearch.js';
+import ControllerCart from '../components/cart/controllerCart.js';
+import ControllerOrder from '../components/order/controllerOrder.js';
 
 export default class Router {
   constructor() {
@@ -11,5 +12,6 @@ export default class Router {
     this.controllerSearch = new ControllerSearch(this);
     this.controllerSort = new ControllerSort(this);
     this.controllerCart = new ControllerCart(this);
+    this.controllerOrder = new ControllerOrder(this);
   }
 }

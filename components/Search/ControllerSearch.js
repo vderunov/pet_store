@@ -1,5 +1,5 @@
-import ModelSearch from './ModelSearch.js';
-import ViewSearch from './ViewSearch.js';
+import ModelSearch from './modelSearch.js';
+import ViewSearch from './viewSearch.js';
 
 export default class ControllerSearch {
   constructor(router) {
@@ -9,11 +9,23 @@ export default class ControllerSearch {
     this.model = new ModelSearch(this);
     this.view = new ViewSearch(this);
     this.showNavSearch();
+    this.init();
+  }
+
+  init() {
+    this.view.addEventForActivateSearch();
   }
 
   showNavSearch() {
     this.view.render();
-    this.view.addEventOnSearch();
+  }
+
+  contrActivateSearch(event) {
+    const { pet } = event.target.dataset;
+
+    if (pet === 'cats' || pet === 'dogs' || pet === 'fish' || pet === 'birds') {
+      this.view.activateSearch();
+    }
   }
 
   sortByInput(e) {

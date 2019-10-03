@@ -1,5 +1,5 @@
-import ModelSort from './ModelSort.js';
-import ViewSort from './ViewSort.js';
+import ModelSort from './modelSort.js';
+import ViewSort from './viewSort.js';
 
 export default class ControllerSort {
   constructor(router) {
@@ -30,6 +30,7 @@ export default class ControllerSort {
   getProps(event) {
     const data = this.routerActiveCase();
     const { pet } = event.target.dataset;
+
     switch (pet) {
       case 'cats':
         this.model.makeSetProperties('fur', 'gender', data);
@@ -51,6 +52,7 @@ export default class ControllerSort {
 
   sortBy(event) {
     const data = this.routerActiveCase();
+
     if (event.target.dataset.btn === 'up') {
       this.model.sortUp(data);
     } else if (event.target.dataset.btn === 'down') {

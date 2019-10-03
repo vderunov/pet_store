@@ -2,14 +2,12 @@
   outline: none;
 }
 
-a {
+a[href='#modal-overflow'] {
   text-decoration: none;
 }
 
-.cart {
-  width: 30px;
-  height: 30px;
-  margin: 0 0 0 20px;
+[data-svg='cart'] {
+  width: 50px;
 }
 
 .cart-img {
@@ -56,10 +54,14 @@ td {
   color: #1e87f0;
 }
 
-[disabled='disabled'] {
+/* [disabled='disabled'] {
   color: orange;
-}
+} */
 
 #counter-cart {
-  font-size: 20px;
+  font-size: 40px;
+}
+
+.space-around {
+  justify-content: space-around;
 }
