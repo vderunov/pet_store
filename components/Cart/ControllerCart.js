@@ -5,6 +5,7 @@ export default class ControllerCart {
   constructor() {
     this.view = new ViewCart(this);
     this.model = new ModelCart(this);
+    this.totalPrice = 0;
     this.init();
   }
 

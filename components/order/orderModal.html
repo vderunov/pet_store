@@ -1,62 +1,93 @@
-<div class="uk-modal-dialog">
-  <button class="uk-modal-close-default" type="button" uk-close></button>
-  <div class="uk-modal-header">
-    <h2 class="uk-modal-title">Checkout</h2>
-  </div>
-  <div class="uk-modal-body">
-    <form>
-      <div class="uk-margin">
-        <div class="uk-inline">
-          <span class="uk-form-icon" uk-icon="icon: user"></span>
-          <input
-            class="uk-input"
-            type="text"
-            id="firstName"
-            placeholder="First name"
-          />
+<div id="modal-sections" uk-modal>
+  <div
+    class="uk-modal-dialog"
+    style="background: url(data/img/orderdog.jpg) center; background-size: cover"
+  >
+    <button class="uk-modal-close-default" type="button" uk-close></button>
+    <div class="uk-modal-header">
+      <h2 class="uk-modal-title">Checkout</h2>
+    </div>
+    <div class="uk-modal-body">
+      <form>
+        <div class="uk-margin">
+          <div class="uk-inline">
+            <span class="uk-form-icon" uk-icon="icon: user"></span>
+            <input
+              class="uk-input"
+              type="text"
+              id="firstName"
+              placeholder="Homer"
+              required
+            />
+          </div>
         </div>
-      </div>
 
-      <div class="uk-margin">
-        <div class="uk-inline">
-          <span class="uk-form-icon" uk-icon="icon: user"></span>
-          <input
-            class="uk-input"
-            type="text"
-            id="lastName"
-            placeholder="Last name"
-          />
+        <div class="uk-margin">
+          <div class="uk-inline">
+            <span class="uk-form-icon" uk-icon="icon: user"></span>
+            <input
+              class="uk-input"
+              type="text"
+              id="lastName"
+              placeholder="Simpson"
+              required
+            />
+          </div>
         </div>
-      </div>
-      <div class="uk-margin">
-        <div class="uk-inline">
-          <span class="uk-form-icon" uk-icon="icon: mail"></span>
-          <input class="uk-input" type="text" id="email" placeholder="email" />
+        <div class="uk-margin">
+          <div class="uk-inline">
+            <span class="uk-form-icon" uk-icon="icon: mail"></span>
+            <input
+              class="uk-input"
+              type="email"
+              id="email"
+              placeholder="simpson@gmail.com"
+              required
+            />
+          </div>
         </div>
-      </div>
-      <div class="uk-margin">
-        <div class="uk-inline">
-          <span class="uk-form-icon" uk-icon="icon: receiver"></span>
-          <input class="uk-input" type="text" id="phone" placeholder="phone" />
+
+        <div class="uk-margin">
+          <div class="uk-inline">
+            <span class="uk-form-icon" uk-icon="icon: receiver"></span>
+            <input
+              class="uk-input"
+              type="text"
+              id="phone"
+              placeholder="(333)-333-3333"
+            />
+          </div>
         </div>
-      </div>
-      <div class="uk-margin">
-        <div class="uk-inline">
-          <span class="uk-form-icon" uk-icon="icon: home"></span>
-          <input
-            class="uk-input"
-            type="text"
-            id="address"
-            placeholder="address"
-          />
+        <div class="uk-margin">
+          <div class="uk-inline">
+            <span class="uk-form-icon" uk-icon="icon: home"></span>
+            <input
+              class="uk-input"
+              type="text"
+              required
+              id="address"
+              placeholder="742 Evergreen Terrace"
+            />
+          </div>
         </div>
+      </form>
+      <div>
+        <h4 style="color: coral">
+          Total price: <span id="total-price">1250</span> USD
+        </h4>
       </div>
-    </form>
-  </div>
-  <div class="uk-modal-footer uk-text-right">
-    <button class="uk-button uk-button-default uk-modal-close" type="button">
-      Cancel
-    </button>
-    <button class="uk-button uk-button-primary" type="button">Confirm</button>
+    </div>
+    <div class="uk-modal-footer uk-text-right">
+      <button class="uk-button uk-button-default uk-modal-close" type="button">
+        Cancel
+      </button>
+      <button
+        id="confirm-btn"
+        class="uk-button uk-button-primary"
+        type="button"
+      >
+        Confirm
+      </button>
+    </div>
   </div>
 </div>

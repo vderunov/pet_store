@@ -47,7 +47,7 @@ export default class ViewCart {
 </div>
 </div>
 </div>`;
-    document.querySelector('#root-modal').innerHTML = str;
+    document.querySelector('#root-modal-cart').innerHTML = str;
   }
 
   renderListInCart(cart) {
@@ -86,12 +86,5 @@ export default class ViewCart {
         'click',
         this.controller.modalHandler.bind(this.controller)
       );
-
-    // document
-    //   .querySelector('.updateStock')
-    //   .addEventListener(
-    //     'click',
-    //     this.controller.setDisabledBtn.bind(this.controller)
-    //   );
   }
 }

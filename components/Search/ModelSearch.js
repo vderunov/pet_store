@@ -10,6 +10,7 @@ export default class ModelSearch {
     const collectionPet = [];
     if (val !== '') {
       const regexp = new RegExp(`\\b${val}`, 'gi');
+
       data.forEach(elem => {
         if (regexp.test(elem.name)) {
           collectionPet.push(elem);
@@ -20,6 +21,7 @@ export default class ModelSearch {
       data.forEach(elem => {
         collectionPet.push(elem);
       });
+
       this.controller.showSortByInput(collectionPet);
     }
   }

@@ -4,7 +4,6 @@ export default class ViewSort {
   constructor(contr) {
     this.controller = contr;
     this.templater = new Templater('../components/Sort/sort.html');
-    // this.templater1 = new Templater('../components/Sort/sortCheckbox.html');
   }
 
   render() {

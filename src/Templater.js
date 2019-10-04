@@ -15,7 +15,7 @@ export default class Templater {
 
   load(objProduct, domNode, selector, event, fn) {
     if (this.isLoad) {
-      this.show(objProduct, domNode);
+      this.show(objProduct, domNode, selector, event, fn);
     } else {
       this.isCatch = true;
       this.elements.push({

@@ -1,8 +1,6 @@
 export default class ModelCart {
   constructor(contr) {
     this.controller = contr;
-    this.availableQuantityOfGoods;
-    this.isAvailableGoods;
     this.cart = {};
   }
 
@@ -13,7 +11,7 @@ export default class ModelCart {
     if (Object.values(cart).length) {
       counterCart.innerHTML = Object.values(cart).reduce((a, b) => a + b);
     } else {
-      counterCart.innerHTML = '';
+      counterCart.innerHTML = '0';
     }
   }
 
@@ -25,6 +23,7 @@ export default class ModelCart {
       if (this.availableQuantityOfGoods === this.cart[id]) {
         this.setDisableOnButton(id);
       }
+
       return;
     }
 
@@ -37,6 +36,7 @@ export default class ModelCart {
 
     if (this.availableQuantityOfGoods === this.cart[id]) {
       this.setDisableOnButton(id);
+
       return false;
     }
   }
