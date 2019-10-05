@@ -1,10 +1,10 @@
-import ControllerSort from '../components/sort/ControllerSort.js';
-import ControllerProduct from '../components/product/controllerProduct.js';
-import ControllerCategory from '../components/category/controllerCategory.js';
-import ControllerSearch from '../components/search/controllerSearch.js';
-import ControllerCart from '../components/cart/controllerCart.js';
-import ControllerOrder from '../components/order/controllerOrder.js';
-import ControllerHistory from '../components/history/controllerHistory.js';
+import ControllerSort from '/components/sort/ControllerSort.js';
+import ControllerProduct from '/components/product/controllerProduct.js';
+import ControllerCategory from '/components/category/controllerCategory.js';
+import ControllerSearch from '/components/search/controllerSearch.js';
+import ControllerCart from '/components/cart/controllerCart.js';
+import ControllerOrder from '/components/order/controllerOrder.js';
+import ControllerHistory from '/components/history/controllerHistory.js';
 
 export default class Router {
   constructor() {
