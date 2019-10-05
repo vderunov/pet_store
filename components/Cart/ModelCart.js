@@ -4,6 +4,10 @@ export default class ModelCart {
     this.cart = {};
   }
 
+  clearCartModel() {
+    this.cart = {};
+  }
+
   getAmountGoodsCart() {
     const cart = JSON.parse(localStorage.getItem('cart'));
     const counterCart = document.querySelector('#counter-cart');

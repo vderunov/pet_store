@@ -14,6 +14,10 @@ export default class ControllerCart {
     this.model.checkCart();
   }
 
+  clearCart() {
+    this.model.clearCartModel();
+  }
+
   addProductToCart(e) {
     if (e.target.classList.contains('buy')) {
       e.stopPropagation();

@@ -54,10 +54,3 @@ export default class Templater {
     }
   }
 }
-
-// node.addEventListener(event, function listener() {
-//   // do something
-//   console.log(this);
-//   fn().bind(this);
-//   element.removeEventListener(event, listener);
-// });

@@ -23,30 +23,30 @@ export default class ViewCart {
     let str = '';
     str += `
     <div id="modal-overflow" uk-modal>
-    <div class="uk-modal-dialog">
+      <div class="uk-modal-dialog">
         <button class="uk-modal-close-default" type="button" uk-close></button>
-        <div class="uk-modal-header">
-            <h2 class="uk-modal-title">Cart</h2>
-        </div>
-        <div class="uk-modal-body" uk-overflow-auto>
-            <div class="uk-overflow-auto">
+          <div class="uk-modal-header">
+              <h2 class="uk-modal-title">Cart</h2>
+          </div>
+            <div class="uk-modal-body" uk-overflow-auto>
+              <div class="uk-overflow-auto">
                 <table class="uk-table uk-table-hover uk-table-middle uk-table-divider">
-                    <tbody id="listInCart">`;
-    str += ` 
-    </tbody>
-</table>
-</div>
-</div>
-<div class="uk-modal-footer uk-text-right">
-    <button class="uk-button uk-button-default uk-modal-close" type="button">
-        Continue shopping
-    </button>
-    <button class="uk-button uk-button-primary" href="#modal-sections" uk-toggle
-    >buy</a
-  >
-</div>
-</div>
-</div>`;
+                  <tbody id="listInCart">`;
+    str += `
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          <div class="uk-modal-footer uk-text-right">
+          <button class="uk-button uk-button-default uk-modal-close" type="button">
+             Continue shopping
+          </button>
+          <button class="uk-button uk-button-primary" id="buy-btn" href="#modal-sections" uk-toggle
+          >buy</button
+        >
+      </>
+    </div>
+    </div>`;
     document.querySelector('#root-modal-cart').innerHTML = str;
   }
 
@@ -58,12 +58,13 @@ export default class ViewCart {
     for (const key in this.localCart) {
       this.data.forEach(elem => {
         if (elem.id === Number(key)) {
-          str += `<tr>
-            <td>
-            <button class="cart-btns delete" data-art="${key}">x</button>
-            <img class="uk-preserve-width uk-border-circle cart-img" src="../../data/img/pets/${
-              elem.type
-            }/${elem.name}.jpg" width="40" alt="">
+          str += `
+    <tr>
+      <td>
+        <button class="cart-btns delete" data-art="${key}">x</button>
+          <img class="uk-preserve-width uk-border-circle cart-img" src="data/img/pets/${
+            elem.type
+          }/${elem.name}.jpg" width="40" alt="">
             <p class="uk-text-truncate">Breed: ${elem.name}</p>
             <p class="uk-text-truncate">Price: ${elem.price} USD</p>
             <button class="cart-btns minus" data-art="${key}">-</button>
@@ -71,7 +72,7 @@ export default class ViewCart {
             <button class="cart-btns plus" data-art="${key}">+</button>
             <p class="uk-text-truncate">${this.localCart[key] *
               elem.price} USD</p>
-         </td>
+       </td>
     </tr>`;
         }
       });

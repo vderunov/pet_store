@@ -15,9 +15,9 @@ export default class ViewOrder {
     );
   }
 
-  renderForm() {
+  renderForm(userValueObj) {
     this.templater.load(
-      null,
+      userValueObj,
       document.querySelector('#root-modal-order'),
       ['#firstName', '#lastName', '#email', '#phone', '#address'],
       'input',
@@ -32,7 +32,6 @@ export default class ViewOrder {
     this.address = document.querySelector('#address');
 
     this.controller.getTotalPrice();
-    this.controller.getUserInputsValueFromLocalStorage();
   }
 
   showValidateMassage(node, span) {
@@ -42,23 +41,5 @@ export default class ViewOrder {
 
   showTotalPrice(totalPrice) {
     this.totalPrice.innerHTML = totalPrice;
-  }
-
-  insertUserValue(userValueObj) {
-    if (userValueObj) {
-      const {
-        firstName = '',
-        lastName = '',
-        email = '',
-        phone = '',
-        address = ''
-      } = userValueObj;
-
-      this.firstName.value = firstName;
-      this.lastName.value = lastName;
-      this.email.value = email;
-      this.phone.value = phone;
-      this.address.value = address;
-    }
   }
 }

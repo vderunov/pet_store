@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-
     <title>Pet store</title>
     <link
       rel="shortcut icon"
@@ -17,23 +16,21 @@
     />
     <link rel="stylesheet" href="./components/Cart/cart.css" />
     <link rel="stylesheet" href="./components/Product/product.css" />
+    <link rel="stylesheet" href="./components/history/history.css" />
   </head>
 
   <body>
     <div class="uk-flex uk-margin-top space-around">
-      <div
-        id="root-category"
-        class="uk-flex uk-flex-right@l uk-padding-small"
-      ></div>
-      <div id="root-cart-icon"></div>
+      <div id="root-category" class="uk-flex uk-padding-small"></div>
       <a href="#modal-overflow" uk-icon="icon: cart" uk-toggle>
-        <span id="counter-cart"></span>
+        <span id="counter-cart">0</span>
       </a>
     </div>
     <div id="root-search"></div>
     <div id="root-sort"></div>
     <div id="root-modal-cart"></div>
     <div id="root-modal-order"></div>
+    <div id="root-modal-history"></div>
     <div
       id="root-goods"
       class="uk-child-width-1-4@m uk-padding-small uk-grid"
