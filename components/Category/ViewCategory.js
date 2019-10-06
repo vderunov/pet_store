@@ -1,4 +1,4 @@
-import Templater from '/src/templater.js';
+import Templater from '/../src/templater.js';
 
 export default class ViewCategory {
   constructor(contr) {

@@ -1,4 +1,4 @@
-import ControllerSort from '/components/sort/ControllerSort.js';
+import ControllerSort from '/components/sort/controllerSort.js';
 import ControllerProduct from '/components/product/controllerProduct.js';
 import ControllerCategory from '/components/category/controllerCategory.js';
 import ControllerSearch from '/components/search/controllerSearch.js';
