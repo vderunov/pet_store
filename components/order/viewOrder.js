@@ -1,4 +1,4 @@
-import Templater from '/../src/templater.js';
+import Templater from '/src/templater.js';
 
 export default class ViewOrder {
   constructor(contr) {
@@ -32,6 +32,21 @@ export default class ViewOrder {
     this.address = document.querySelector('#address');
 
     this.controller.getTotalPrice();
+
+    document
+      .querySelector('#confirm-btn')
+      .addEventListener(
+        'click',
+        this.controller.transferSendPurchaseMessage.bind(
+          this.controller,
+          this.firstName,
+          this.lastName,
+          this.email,
+          this.phone,
+          this.address,
+          this.totalPrice
+        )
+      );
   }
 
   showValidateMassage(node, span) {

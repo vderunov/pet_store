@@ -131,4 +131,43 @@ export default class ModelOrder {
       JSON.stringify(this.userInputsValue)
     );
   }
+
+  notify(firstName, lastName, email, phone, address, totalPrice) {
+    const info = `${firstName.value} ${lastName.value} ${email.value} ${phone.value} ${address.value} ${totalPrice.innerHTML}`;
+
+    fetch(
+      `https://api.telegram.org/bot744059758:AAELsDJ3Df6N3y0zM_OIV8e2q2GTzvHOfEQ/sendmessage?chat_id=102249236&text=${info}`
+    );
+  }
+
+  createDataForEmailSend(firstName, lastName, email, totalPrice) {
+    const cart = JSON.parse(localStorage.getItem('cart'));
+    const goods = JSON.parse(localStorage.getItem('goods'));
+    const arrOrder = [];
+
+    for (const key in cart) {
+      goods.forEach(elem => {
+        if (elem.id === Number(key)) {
+          const obj = {
+            name: elem.name,
+            quantity: cart[key],
+            price: elem.price
+          };
+          arrOrder.push(obj);
+        }
+      });
+    }
+    this.sendEmail(firstName, lastName, email, totalPrice, arrOrder);
+  }
+
+  sendEmail(firstName, lastName, email, totalPrice, arrOrder) {
+    const url = 'http://so2niko.zzz.com.ua/ss/api.php?data=';
+    const data = {
+      mail: email.value,
+      name: `${firstName.value} ${lastName.value}`,
+      purchase_data: arrOrder,
+      total_price: totalPrice.innerHTML
+    };
+    fetch(url + JSON.stringify(data), { mode: 'no-cors' });
+  }
 }

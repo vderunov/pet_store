@@ -1,4 +1,4 @@
-import Templater from '/../src/templater.js';
+import Templater from '/src/templater.js';
 
 export default class ViewHistory {
   constructor(contr) {
@@ -39,10 +39,7 @@ export default class ViewHistory {
     }
   }
 
-  renderHistoryList() {
-    const purchaseHistory = JSON.parse(localStorage.getItem('purchaseHistory'));
-    const data = JSON.parse(localStorage.getItem('goods'));
-
+  renderHistoryList(purchaseHistory, data) {
     if (!purchaseHistory) {
       return;
     }

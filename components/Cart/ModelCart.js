@@ -56,12 +56,14 @@ export default class ModelCart {
     return this.availableQuantityOfGoods;
   }
 
-  setAllDisabledBtn() {
-    for (const key in this.cart) {
-      if (this.cart[key] === this.getAmountGoodsFromStock(key)) {
-        document
-          .querySelector(`[data-id="${key}"]`)
-          .setAttribute('disabled', 'disabled');
+  setAllDisabledBtn(event) {
+    if (event.target.classList.contains('updateStock')) {
+      for (const key in this.cart) {
+        if (this.cart[key] === this.getAmountGoodsFromStock(key)) {
+          document
+            .querySelector(`[data-id="${key}"]`)
+            .setAttribute('disabled', 'disabled');
+        }
       }
     }
   }

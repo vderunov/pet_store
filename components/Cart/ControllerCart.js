@@ -25,8 +25,8 @@ export default class ControllerCart {
     }
   }
 
-  setDisabledBtn() {
-    this.model.setAllDisabledBtn();
+  setDisabledBtn(event) {
+    this.model.setAllDisabledBtn(event);
   }
 
   modalHandler(event) {

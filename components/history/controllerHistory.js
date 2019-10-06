@@ -11,8 +11,10 @@ export default class ControllerHistory {
   }
 
   makeHistoryList() {
+    const purchaseHistory = JSON.parse(localStorage.getItem('purchaseHistory'));
+    const data = JSON.parse(localStorage.getItem('goods'));
     this.view.getNodes();
-    this.view.renderHistoryList();
+    this.view.renderHistoryList(purchaseHistory, data);
   }
 
   transferCreateHistoryStorage(listInCart, counterCart) {

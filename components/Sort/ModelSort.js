@@ -33,7 +33,7 @@ export default class ModelSort {
   makeSetProperties(prop1, prop2, data) {
     const setProp1 = new Set();
     const setProp2 = new Set();
-    const obj = {
+    const objCheckBoxProp = {
       [prop1]: setProp1,
       [prop2]: setProp2
     };
@@ -61,23 +61,34 @@ export default class ModelSort {
         setProp2.add(elem[prop2]);
       }
     });
-
-    this.controller.initCheckbox(obj, data);
+    this.controller.initCheckbox(objCheckBoxProp, data);
   }
 
-  addCheckBox(obj, data) {
+  addCheckBox(objCheckBoxProp) {
+    const data = JSON.parse(localStorage.getItem('category'));
     const arr = [];
 
-    for (const key in obj) {
+    for (const key in objCheckBoxProp) {
       data.forEach(elem => {
-        if (Array.isArray(elem[key])) {
-          elem[key].forEach(el => {
-            if (el === obj[key]) {
-              this.collectionPet.push(elem);
-            }
-          });
-        } else if (elem[key] === obj[key]) {
-          this.collectionPet.push(elem);
+        switch (true) {
+          case Array.isArray(elem[key]):
+            elem[key].forEach(el => {
+              if (el === objCheckBoxProp[key]) {
+                this.collectionPet.push(elem);
+              }
+            });
+            break;
+          case Number(objCheckBoxProp[key]) &&
+            elem[key] === Number(objCheckBoxProp[key]):
+            this.collectionPet.push(elem);
+            break;
+          case elem[key] === objCheckBoxProp[key]:
+            this.collectionPet.push(elem);
+            break;
+          case typeof elem[key] === 'boolean' &&
+            String(elem[key]) === objCheckBoxProp[key]:
+            this.collectionPet.push(elem);
+            break;
         }
       });
     }
@@ -92,24 +103,36 @@ export default class ModelSort {
     this.controller.showSortByPrice(this.collectionPet);
   }
 
-  delCheckBox(obj, dataCategoryLocalStorage) {
+  delCheckBox(objCheckBoxProp, dataCategoryLocalStorage) {
     const arr = new Set([]);
 
-    for (const key in obj) {
-      this.collectionPet.map(elem => {
-        if (Array.isArray(elem[key])) {
-          elem[key].forEach(el => {
-            if (el === obj[key]) {
-              arr.add(elem);
-            }
-          });
-        } else if (elem[key] !== obj[key]) {
-          arr.add(elem);
+    for (const key in objCheckBoxProp) {
+      this.collectionPet.forEach(elem => {
+        switch (true) {
+          case Array.isArray(elem[key]):
+            elem[key].forEach(el => {
+              if (el === elem[key]) {
+                arr.add(elem);
+              }
+            });
+            break;
+          case Number(objCheckBoxProp[key]) &&
+            elem[key] !== Number(objCheckBoxProp[key]):
+            arr.add(elem);
+            break;
+          case typeof elem[key] !== 'boolean' &&
+            !isFinite(objCheckBoxProp[key]) &&
+            elem[key] !== objCheckBoxProp[key]:
+            arr.add(elem);
+            break;
+          case typeof elem[key] === 'boolean' &&
+            String(elem[key]) !== objCheckBoxProp[key]:
+            arr.add(elem);
+            break;
         }
       });
       this.collectionPet = [];
     }
-
     this.collectionPet = [...arr];
 
     if (this.collectionPet.length) {

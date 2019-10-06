@@ -30,4 +30,16 @@ export default class ControllerOrder {
   transferValidMessage(parentNode, span) {
     this.view.showValidateMassage(parentNode, span);
   }
+
+  transferSendPurchaseMessage(
+    firstName,
+    lastName,
+    email,
+    phone,
+    address,
+    totalPrice
+  ) {
+    this.model.notify(firstName, lastName, email, phone, address, totalPrice);
+    this.model.createDataForEmailSend(firstName, lastName, email, totalPrice);
+  }
 }

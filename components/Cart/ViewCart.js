@@ -11,6 +11,13 @@ export default class ViewCart {
         'click',
         this.controller.addProductToCart.bind(this.controller)
       );
+
+    document
+      .querySelector('#root-sort')
+      .addEventListener(
+        'click',
+        this.controller.setDisabledBtn.bind(this.controller)
+      );
   }
 
   init() {

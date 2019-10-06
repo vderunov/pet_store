@@ -1,4 +1,4 @@
-import Templater from '/../src/templater.js';
+import Templater from '/src/templater.js';
 
 export default class ViewSort {
   constructor(contr) {
@@ -29,7 +29,7 @@ export default class ViewSort {
     }
   }
 
-  delCheckboxFromPage(obj) {
+  delCheckboxFromPage() {
     document.querySelector('#checkbox').innerHTML = '';
   }
 
