@@ -1,9 +1,5 @@
 export default class ModelProduct {
-  constructor(contr) {
-    this.controller = contr;
-  }
-
-  loadGoodsFromJSON() {
+  loadGoodsFromJSON(showAllGoods) {
     fetch(
       // 'https://cors-anywhere.herokuapp.com/https://gentle-coast-49966.herokuapp.com/get-goods'
       '/data/goods.json'
@@ -11,7 +7,7 @@ export default class ModelProduct {
       .then(res => res.json())
       .then(out => {
         this.addGoodsInLocalStorage(out);
-        this.controller.showAllGoods(out);
+        showAllGoods(out);
       });
   }
 

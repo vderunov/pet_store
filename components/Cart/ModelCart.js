@@ -5,6 +5,7 @@ export default class ModelCart {
   }
 
   clearCartModel() {
+    console.log('clearCartModel from Cart');
     this.cart = {};
   }
 
@@ -82,7 +83,10 @@ export default class ModelCart {
     }
 
     this.saveToLocalStorageCart(this.cart);
-    this.controller.renderViewCart(this.cart);
+    this.controller.renderViewCart(
+      this.cart,
+      JSON.parse(localStorage.getItem('cart'))
+    );
   }
 
   checkCart() {
@@ -103,7 +107,7 @@ export default class ModelCart {
     }
   }
 
-  minusProduct(idProduct) {
+  minusProduct(idProduct, renderViewCart) {
     if (this.cart[idProduct] > 1) {
       this.cart[idProduct]--;
     } else {
@@ -111,14 +115,14 @@ export default class ModelCart {
     }
 
     this.saveToLocalStorageCart(this.cart);
-    this.controller.renderViewCart(this.cart);
+    renderViewCart(this.cart);
     this.deleteCartFromLocalStorage();
   }
 
-  deleteProduct(idProduct) {
+  deleteProduct(idProduct, renderViewCart) {
     delete this.cart[idProduct];
     this.saveToLocalStorageCart(this.cart);
-    this.controller.renderViewCart(this.cart);
+    renderViewCart(this.cart);
     this.deleteCartFromLocalStorage();
   }
 

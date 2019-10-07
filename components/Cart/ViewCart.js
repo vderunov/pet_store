@@ -1,29 +1,23 @@
 export default class ViewCart {
-  constructor(contr) {
-    this.controller = contr;
+  constructor() {
     this.init();
-  }
-
-  addHandlerToBuyBtns() {
-    document
-      .querySelector('#root-goods')
-      .addEventListener(
-        'click',
-        this.controller.addProductToCart.bind(this.controller)
-      );
-
-    document
-      .querySelector('#root-sort')
-      .addEventListener(
-        'click',
-        this.controller.setDisabledBtn.bind(this.controller)
-      );
   }
 
   init() {
     this.renderCart();
     this.renderListInCart();
-    this.addModalHandler();
+  }
+
+  addHandlerToBuyBtns(addProductToCart, setDisabledBtn, modalHandler) {
+    document
+      .querySelector('#root-goods')
+      .addEventListener('click', addProductToCart);
+    document
+      .querySelector('#root-sort')
+      .addEventListener('click', setDisabledBtn);
+    document
+      .querySelector('#modal-overflow')
+      .addEventListener('click', modalHandler);
   }
 
   renderCart() {
@@ -58,12 +52,12 @@ export default class ViewCart {
   }
 
   renderListInCart(cart) {
-    this.localCart = cart || JSON.parse(localStorage.getItem('cart'));
-    this.data = JSON.parse(localStorage.getItem('goods'));
+    const localCart = cart || JSON.parse(localStorage.getItem('cart'));
+    const data = JSON.parse(localStorage.getItem('goods'));
 
     let str = '';
-    for (const key in this.localCart) {
-      this.data.forEach(elem => {
+    for (const key in localCart) {
+      data.forEach(elem => {
         if (elem.id === Number(key)) {
           str += `
     <tr>
@@ -75,24 +69,14 @@ export default class ViewCart {
             <p class="uk-text-truncate">Breed: ${elem.name}</p>
             <p class="uk-text-truncate">Price: ${elem.price} USD</p>
             <button class="cart-btns minus" data-art="${key}">-</button>
-            <p class="uk-text-truncate">${this.localCart[key]}</p>
+            <p class="uk-text-truncate">${localCart[key]}</p>
             <button class="cart-btns plus" data-art="${key}">+</button>
-            <p class="uk-text-truncate">${this.localCart[key] *
-              elem.price} USD</p>
+            <p class="uk-text-truncate">${localCart[key] * elem.price} USD</p>
        </td>
     </tr>`;
         }
       });
     }
     document.querySelector('#listInCart').innerHTML = str;
-  }
-
-  addModalHandler() {
-    document
-      .querySelector('#modal-overflow')
-      .addEventListener(
-        'click',
-        this.controller.modalHandler.bind(this.controller)
-      );
   }
 }

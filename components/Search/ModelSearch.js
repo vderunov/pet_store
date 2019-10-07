@@ -1,9 +1,5 @@
 export default class ModelSearch {
-  constructor(contr) {
-    this.controller = contr;
-  }
-
-  makeSortByInput(letters) {
+  makeSortByInput(letters, showSortByInput) {
     const val = letters.trim();
     const data = JSON.parse(localStorage.getItem('category'));
 
@@ -16,13 +12,13 @@ export default class ModelSearch {
           collectionPet.push(elem);
         }
       });
-      this.controller.showSortByInput(collectionPet);
+      showSortByInput(collectionPet);
     } else {
       data.forEach(elem => {
         collectionPet.push(elem);
       });
 
-      this.controller.showSortByInput(collectionPet);
+      showSortByInput(collectionPet);
     }
   }
 }

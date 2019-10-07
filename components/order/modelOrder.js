@@ -1,6 +1,5 @@
 export default class ModelOrder {
-  constructor(contr) {
-    this.controller = contr;
+  constructor() {
     this.userInputsValue = JSON.parse(
       localStorage.getItem('userInputsValue')
     ) || {
@@ -12,7 +11,7 @@ export default class ModelOrder {
     };
   }
 
-  getUserValueObj() {
+  getUserValueObj(transferFormValue) {
     let userValueObj = JSON.parse(localStorage.getItem('userInputsValue'));
 
     if (!userValueObj) {
@@ -25,10 +24,10 @@ export default class ModelOrder {
       };
     }
 
-    this.controller.transferFormValue(userValueObj);
+    transferFormValue(userValueObj);
   }
 
-  makeValidationFormInputs(event) {
+  makeValidationFormInputs(event, transferValidMessage) {
     const { target } = event;
     const input = target.id;
     const { value } = target;
@@ -42,7 +41,8 @@ export default class ModelOrder {
           value.match(reg),
           value,
           parentNode,
-          'Error: only alphabetic characters are allowed'
+          'Error: only alphabetic characters are allowed',
+          transferValidMessage
         );
         this.setInputsValueInLocalStorage('firstName', value);
         break;
@@ -52,7 +52,8 @@ export default class ModelOrder {
           value.match(reg),
           value,
           parentNode,
-          'Error: only alphabetic characters are allowed'
+          'Error: only alphabetic characters are allowed',
+          transferValidMessage
         );
         this.setInputsValueInLocalStorage('lastName', value);
         break;
@@ -62,7 +63,8 @@ export default class ModelOrder {
           value.match(reg),
           value,
           parentNode,
-          'Error: email address is invalid'
+          'Error: email address is invalid',
+          transferValidMessage
         );
         this.setInputsValueInLocalStorage('email', value);
         break;
@@ -72,7 +74,8 @@ export default class ModelOrder {
           value.match(reg),
           value,
           parentNode,
-          'Error: number is not correct'
+          'Error: number is not correct',
+          transferValidMessage
         );
         this.setInputsValueInLocalStorage('phone', value);
         break;
@@ -82,7 +85,8 @@ export default class ModelOrder {
           value.match(reg),
           value,
           parentNode,
-          'Error: Do not use intricate characters'
+          'Error: Do not use intricate characters',
+          transferValidMessage
         );
         this.setInputsValueInLocalStorage('address', value);
         break;
@@ -91,7 +95,7 @@ export default class ModelOrder {
     }
   }
 
-  createMessage(match, value, parentNode, errMessage) {
+  createMessage(match, value, parentNode, errMessage, transferValidMessage) {
     const span = document.createElement('span');
 
     if (match) {
@@ -105,10 +109,10 @@ export default class ModelOrder {
       span.innerHTML = errMessage;
     }
 
-    this.controller.transferValidMessage(parentNode, span);
+    transferValidMessage(parentNode, span);
   }
 
-  getTotalPriceModel() {
+  getTotalPriceModel(transferTotalPrice) {
     const goods = JSON.parse(localStorage.getItem('goods'));
     const cart = JSON.parse(localStorage.getItem('cart'));
     let totalPrice = 0;
@@ -120,7 +124,7 @@ export default class ModelOrder {
         }
       });
     }
-    this.controller.transferTotalPrice(totalPrice);
+    transferTotalPrice(totalPrice);
   }
 
   setInputsValueInLocalStorage(input, inputsValue) {

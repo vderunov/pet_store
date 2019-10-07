@@ -6,18 +6,18 @@ export default class ControllerSearch {
     this.routerShowGoods = router.controllerProduct.showAllGoods.bind(
       router.controllerProduct
     );
-    this.model = new ModelSearch(this);
-    this.view = new ViewSearch(this);
+    this.model = new ModelSearch();
+    this.view = new ViewSearch();
     this.showNavSearch();
     this.init();
   }
 
   init() {
-    this.view.addEventForActivateSearch();
+    this.view.addEventForActivateSearch(this.contrActivateSearch.bind(this));
   }
 
   showNavSearch() {
-    this.view.render();
+    this.view.render(this.sortByInput.bind(this));
   }
 
   contrActivateSearch(event) {
@@ -29,7 +29,7 @@ export default class ControllerSearch {
   }
 
   sortByInput(e) {
-    this.model.makeSortByInput(e.target.value);
+    this.model.makeSortByInput(e.target.value, this.showSortByInput.bind(this));
   }
 
   showSortByInput(collectionPet) {

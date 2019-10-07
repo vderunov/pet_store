@@ -1,27 +1,21 @@
 import Templater from '/src/templater.js';
 
 export default class ViewHistory {
-  constructor(contr) {
-    this.controller = contr;
-    this.templater = new Templater('../components/history/historyModal.html');
-    this.init();
+  constructor() {
+    this.templater = new Templater('/components/history/historyModal.html');
   }
 
-  init() {
-    this.renderHistoryModal();
-  }
-
-  renderHistoryModal() {
+  renderHistoryModal(makeHistoryList) {
     this.templater.load(
       null,
       document.querySelector('#root-modal-history'),
       ['#history', '#buy-btn'],
       'click',
-      this.controller.makeHistoryList.bind(this.controller)
+      makeHistoryList
     );
   }
 
-  getNodes() {
+  getNodes(transferCreateHistoryStorage) {
     const listInCart = document.querySelector('#listInCart');
     const counterCart = document.querySelector('#counter-cart');
     this.idHistoryList = document.querySelector('#historyList');
@@ -30,11 +24,7 @@ export default class ViewHistory {
     if (this.confirmBtn) {
       this.confirmBtn.addEventListener(
         'click',
-        this.controller.transferCreateHistoryStorage.bind(
-          this.controller,
-          listInCart,
-          counterCart
-        )
+        transferCreateHistoryStorage.bind(listInCart, counterCart)
       );
     }
   }

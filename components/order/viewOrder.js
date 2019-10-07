@@ -1,27 +1,27 @@
 import Templater from '/src/templater.js';
 
 export default class ViewOrder {
-  constructor(contr) {
-    this.controller = contr;
-    this.templater = new Templater('../components/Order/orderModal.html');
+  constructor() {
+    this.templater = new Templater('/components/Order/orderModal.html');
     this.cartIcon = document.querySelector('[href="#modal-sections"]');
-    this.init();
   }
 
-  init() {
-    this.cartIcon.addEventListener(
-      'click',
-      this.controller.addEventOnCartIcon.bind(this.controller)
-    );
+  bindCartIcon(addEventOnCartIcon) {
+    this.cartIcon.addEventListener('click', addEventOnCartIcon);
   }
 
-  renderForm(userValueObj) {
+  renderForm(
+    userValueObj,
+    validateFormInputs,
+    transferSendPurchaseMessage,
+    getTotalPrice
+  ) {
     this.templater.load(
       userValueObj,
       document.querySelector('#root-modal-order'),
       ['#firstName', '#lastName', '#email', '#phone', '#address'],
       'input',
-      this.controller.validateFormInputs.bind(this.controller)
+      validateFormInputs
     );
 
     this.totalPrice = document.querySelector('#total-price');
@@ -31,14 +31,14 @@ export default class ViewOrder {
     this.phone = document.querySelector('#phone');
     this.address = document.querySelector('#address');
 
-    this.controller.getTotalPrice();
+    getTotalPrice();
 
     document
       .querySelector('#confirm-btn')
       .addEventListener(
         'click',
-        this.controller.transferSendPurchaseMessage.bind(
-          this.controller,
+        transferSendPurchaseMessage.bind(
+          this,
           this.firstName,
           this.lastName,
           this.email,

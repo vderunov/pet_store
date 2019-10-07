@@ -1,36 +1,27 @@
 export default class ModelSort {
-  constructor(contr) {
-    this.controller = contr;
+  constructor() {
     this.collectionPet = [];
   }
 
-  sortUp(goods) {
-    this.controller.showSortByPrice(
-      goods.sort((a, b) => (a.price > b.price ? 1 : -1))
-    );
+  sortUp(goods, showSortByPrice) {
+    showSortByPrice(goods.sort((a, b) => (a.price > b.price ? 1 : -1)));
   }
 
-  sortDown(goods) {
-    this.controller.showSortByPrice(
-      goods.sort((a, b) => (a.price < b.price ? 1 : -1))
-    );
+  sortDown(goods, showSortByPrice) {
+    showSortByPrice(goods.sort((a, b) => (a.price < b.price ? 1 : -1)));
   }
 
-  sortQuantity(goods) {
+  sortQuantity(goods, showSortByPrice) {
     if (this.i) {
-      this.controller.showSortByPrice(
-        goods.sort((a, b) => (a.quantity < b.quantity ? 1 : -1))
-      );
+      showSortByPrice(goods.sort((a, b) => (a.quantity < b.quantity ? 1 : -1)));
       this.i = false;
     } else {
-      this.controller.showSortByPrice(
-        goods.sort((a, b) => (a.quantity > b.quantity ? 1 : -1))
-      );
+      showSortByPrice(goods.sort((a, b) => (a.quantity > b.quantity ? 1 : -1)));
       this.i = true;
     }
   }
 
-  makeSetProperties(prop1, prop2, data) {
+  makeSetProperties(prop1, prop2, data, initCheckbox, delCheckbox) {
     const setProp1 = new Set();
     const setProp2 = new Set();
     const objCheckBoxProp = {
@@ -41,7 +32,7 @@ export default class ModelSort {
     this.collectionPet = [];
 
     if (prop1 === 'all') {
-      return this.controller.delCheckbox();
+      return delCheckbox();
     }
 
     data.forEach(elem => {
@@ -61,15 +52,15 @@ export default class ModelSort {
         setProp2.add(elem[prop2]);
       }
     });
-    this.controller.initCheckbox(objCheckBoxProp, data);
+    initCheckbox(objCheckBoxProp, data);
   }
 
-  addCheckBox(objCheckBoxProp) {
-    const data = JSON.parse(localStorage.getItem('category'));
+  addCheckBox(objCheckBoxProp, showSortByPrice) {
+    const dataLocal = JSON.parse(localStorage.getItem('category'));
     const arr = [];
 
     for (const key in objCheckBoxProp) {
-      data.forEach(elem => {
+      dataLocal.forEach(elem => {
         switch (true) {
           case Array.isArray(elem[key]):
             elem[key].forEach(el => {
@@ -100,10 +91,11 @@ export default class ModelSort {
     });
 
     this.collectionPet = arr;
-    this.controller.showSortByPrice(this.collectionPet);
+    showSortByPrice(this.collectionPet);
   }
 
-  delCheckBox(objCheckBoxProp, dataCategoryLocalStorage) {
+  delCheckBox(objCheckBoxProp, showSortByPrice) {
+    const dataLocal = JSON.parse(localStorage.getItem('category'));
     const arr = new Set([]);
 
     for (const key in objCheckBoxProp) {
@@ -136,9 +128,9 @@ export default class ModelSort {
     this.collectionPet = [...arr];
 
     if (this.collectionPet.length) {
-      this.controller.showSortByPrice(this.collectionPet);
+      showSortByPrice(this.collectionPet);
     } else {
-      this.controller.showSortByPrice(dataCategoryLocalStorage);
+      showSortByPrice(dataLocal);
     }
   }
 }

@@ -2,28 +2,23 @@ import ModelHistory from './modelHistory.js';
 import ViewHistory from './viewHistory.js';
 
 export default class ControllerHistory {
-  constructor(router) {
-    this.routerClearCart = router.controllerCart.clearCart.bind(
-      router.controllerCart
-    );
-    this.view = new ViewHistory(this);
-    this.model = new ModelHistory(this);
+  constructor() {
+    this.view = new ViewHistory();
+    this.model = new ModelHistory();
+    this.view.renderHistoryModal(this.makeHistoryList.bind(this));
   }
 
   makeHistoryList() {
-    const purchaseHistory = JSON.parse(localStorage.getItem('purchaseHistory'));
-    const data = JSON.parse(localStorage.getItem('goods'));
-    this.view.getNodes();
-    this.view.renderHistoryList(purchaseHistory, data);
+    this.view.getNodes(this.transferCreateHistoryStorage.bind(this));
+    this.view.renderHistoryList(
+      this.model.getPurchaseHistory(),
+      this.model.getDataFromLocalStorage()
+    );
   }
 
   transferCreateHistoryStorage(listInCart, counterCart) {
     this.model.createHistoryStorage();
     this.model.clearCart(listInCart, counterCart);
     this.view.renderHistoryList();
-  }
-
-  clearCart() {
-    this.routerClearCart();
   }
 }

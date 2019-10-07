@@ -1,18 +1,17 @@
 import Templater from '/src/templater.js';
 
 export default class ViewSort {
-  constructor(contr) {
-    this.controller = contr;
-    this.templater = new Templater('../components/Sort/sort.html');
+  constructor() {
+    this.templater = new Templater('/components/Sort/sort.html');
   }
 
-  render() {
+  render(sortBy) {
     this.templater.load(
       null,
       document.querySelector('#root-sort'),
       ['[data-btn="up"]', '[data-btn="down"]', '[data-btn="quantity"]'],
       'click',
-      this.controller.sortBy.bind(this.controller)
+      sortBy
     );
   }
 
@@ -33,18 +32,12 @@ export default class ViewSort {
     document.querySelector('#checkbox').innerHTML = '';
   }
 
-  addEventOnNav() {
+  addEventOnNav(getProps, getGoodsByProp) {
     document
       .querySelector('#root-category')
-      .addEventListener(
-        'click',
-        this.controller.getProps.bind(this.controller)
-      );
+      .addEventListener('click', getProps);
     document
       .querySelector('#root-sort')
-      .addEventListener(
-        'change',
-        this.controller.getGoodsByProp.bind(this.controller)
-      );
+      .addEventListener('change', getGoodsByProp);
   }
 }

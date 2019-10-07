@@ -3,14 +3,18 @@ import ViewCart from './viewCart.js';
 
 export default class ControllerCart {
   constructor() {
-    this.view = new ViewCart(this);
+    this.view = new ViewCart();
     this.model = new ModelCart(this);
     this.totalPrice = 0;
     this.init();
   }
 
   init() {
-    this.view.addHandlerToBuyBtns();
+    this.view.addHandlerToBuyBtns(
+      this.addProductToCart.bind(this),
+      this.setDisabledBtn.bind(this),
+      this.modalHandler.bind(this)
+    );
     this.model.checkCart();
   }
 
@@ -37,10 +41,10 @@ export default class ControllerCart {
       this.model.plusProduct(idProduct);
       event.stopPropagation();
     } else if (target.classList.contains('minus')) {
-      this.model.minusProduct(idProduct);
+      this.model.minusProduct(idProduct, this.renderViewCart.bind(this));
       event.stopPropagation();
     } else if (target.classList.contains('delete')) {
-      this.model.deleteProduct(idProduct);
+      this.model.deleteProduct(idProduct, this.renderViewCart.bind(this));
       event.stopPropagation();
     }
   }

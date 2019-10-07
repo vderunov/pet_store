@@ -1,6 +1,5 @@
 export default class ModelHistory {
-  constructor(contr) {
-    this.controller = contr;
+  constructor() {
     this.oldPurchases = JSON.parse(localStorage.getItem('purchaseHistory'));
   }
 
@@ -35,11 +34,18 @@ export default class ModelHistory {
     localStorage.setItem('purchaseHistory', JSON.stringify(this.oldPurchases));
   }
 
+  getPurchaseHistory() {
+    return JSON.parse(localStorage.getItem('purchaseHistory'));
+  }
+
+  getDataFromLocalStorage() {
+    return JSON.parse(localStorage.getItem('goods'));
+  }
+
   clearCart(listInCart, counterCart) {
     listInCart.innerHTML = '';
     counterCart.innerHTML = '0';
     localStorage.removeItem('cart');
-    this.controller.clearCart();
   }
 
   formatDate(date) {

@@ -1,17 +1,13 @@
 import Templater from '/src/templater.js';
 
 export default class ViewSearch {
-  constructor(contr) {
-    this.templater = new Templater('../components/Search/search.html');
-    this.controller = contr;
+  constructor() {
+    this.templater = new Templater('/components/Search/search.html');
     this.rootCategory = document.querySelector('#root-category');
   }
 
-  addEventForActivateSearch() {
-    this.rootCategory.addEventListener(
-      'click',
-      this.controller.contrActivateSearch.bind(this.controller)
-    );
+  addEventForActivateSearch(contrActivateSearch) {
+    this.rootCategory.addEventListener('click', contrActivateSearch);
   }
 
   activateSearch() {
@@ -20,13 +16,13 @@ export default class ViewSearch {
     search.style.background = 'lightgreen';
   }
 
-  render() {
+  render(sortByInput) {
     this.templater.load(
       null,
       document.querySelector('#root-search'),
       ['#search'],
       'input',
-      this.controller.sortByInput.bind(this.controller)
+      sortByInput
     );
   }
 }

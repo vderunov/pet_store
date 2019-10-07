@@ -1,14 +1,10 @@
 export default class ModelCategory {
-  constructor(contr) {
-    this.controller = contr;
-  }
-
-  makeCategory(pet) {
+  makeCategory(pet, showCategory) {
     const data = JSON.parse(localStorage.getItem('goods'));
     const collectionPet = [];
 
     if (pet === 'all') {
-      return this.controller.showCategory(data);
+      return showCategory(data);
     }
 
     data.forEach(elem => {
@@ -16,6 +12,6 @@ export default class ModelCategory {
         collectionPet.push(elem);
       }
     });
-    this.controller.showCategory(collectionPet);
+    showCategory(collectionPet);
   }
 }

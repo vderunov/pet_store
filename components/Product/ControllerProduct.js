@@ -3,13 +3,13 @@ import ViewProduct from './viewProduct.js';
 
 export default class ControllerProduct {
   constructor() {
-    this.model = new ModelProduct(this);
-    this.view = new ViewProduct(this);
+    this.model = new ModelProduct();
+    this.view = new ViewProduct();
     this.initJSON();
   }
 
   initJSON() {
-    this.model.loadGoodsFromJSON();
+    this.model.loadGoodsFromJSON(this.showAllGoods.bind(this));
   }
 
   showAllGoods(data) {

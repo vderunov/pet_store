@@ -3,8 +3,8 @@ import ViewSort from './viewSort.js';
 
 export default class ControllerSort {
   constructor(router) {
-    this.model = new ModelSort(this);
-    this.view = new ViewSort(this);
+    this.model = new ModelSort();
+    this.view = new ViewSort();
     this.routerActiveCase = router.controllerProduct.getActiveCase.bind(
       router.controllerProduct
     );
@@ -15,8 +15,11 @@ export default class ControllerSort {
   }
 
   init() {
-    this.view.render();
-    this.view.addEventOnNav();
+    this.view.render(this.sortBy.bind(this));
+    this.view.addEventOnNav(
+      this.getProps.bind(this),
+      this.getGoodsByProp.bind(this)
+    );
   }
 
   initCheckbox(obj, data) {
@@ -33,19 +36,45 @@ export default class ControllerSort {
 
     switch (pet) {
       case 'cats':
-        this.model.makeSetProperties('fur', 'gender', data);
+        this.model.makeSetProperties(
+          'fur',
+          'gender',
+          data,
+          this.initCheckbox.bind(this)
+        );
         break;
       case 'dogs':
-        this.model.makeSetProperties('weightkg', 'specialization', data);
+        this.model.makeSetProperties(
+          'weightkg',
+          'specialization',
+          data,
+          this.initCheckbox.bind(this)
+        );
         break;
       case 'fish':
-        this.model.makeSetProperties('color', 'lifetimeyears', data);
+        this.model.makeSetProperties(
+          'color',
+          'lifetimeyears',
+          data,
+          this.initCheckbox.bind(this)
+        );
         break;
       case 'birds':
-        this.model.makeSetProperties('talking', 'weightkg', data);
+        this.model.makeSetProperties(
+          'talking',
+          'weightkg',
+          data,
+          this.initCheckbox.bind(this)
+        );
         break;
       default:
-        this.model.makeSetProperties('all');
+        this.model.makeSetProperties(
+          'all',
+          null,
+          null,
+          null,
+          this.delCheckbox.bind(this)
+        );
         break;
     }
   }
@@ -54,21 +83,19 @@ export default class ControllerSort {
     const data = this.routerActiveCase();
 
     if (event.target.dataset.btn === 'up') {
-      this.model.sortUp(data);
+      this.model.sortUp(data, this.showSortByPrice.bind(this));
     } else if (event.target.dataset.btn === 'down') {
-      this.model.sortDown(data);
+      this.model.sortDown(data, this.showSortByPrice.bind(this));
     } else if (event.target.dataset.btn === 'quantity') {
-      this.model.sortQuantity(data);
+      this.model.sortQuantity(data, this.showSortByPrice.bind(this));
     }
   }
 
   getGoodsByProp(e) {
-    const data = JSON.parse(localStorage.getItem('category'));
-
     if (e.target.checked) {
-      this.model.addCheckBox(e.target.dataset, data);
+      this.model.addCheckBox(e.target.dataset, this.showSortByPrice.bind(this));
     } else {
-      this.model.delCheckBox(e.target.dataset, data);
+      this.model.delCheckBox(e.target.dataset, this.showSortByPrice.bind(this));
     }
   }
 
