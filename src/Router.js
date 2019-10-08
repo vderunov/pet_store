@@ -1,3 +1,3 @@
-import Router from '../app/main.js';
+import Router from '../App/main.js';
 
 const router = new Router();
