@@ -90,8 +90,6 @@ export default class ModelOrder {
         );
         this.setInputsValueInLocalStorage('address', value);
         break;
-      default:
-        break;
     }
   }
 

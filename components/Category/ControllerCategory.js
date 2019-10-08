@@ -3,10 +3,6 @@ import ViewCategory from './viewCategory.js';
 
 export default class ControllerCategory {
   constructor(router) {
-    // this.routerShowGoods = router.controllerProduct.showAllGoods.bind(
-    //   router.controllerProduct
-    // );
-
     this.router = router;
     this.view = new ViewCategory();
     this.model = new ModelCategory();
@@ -40,12 +36,7 @@ export default class ControllerCategory {
   }
 
   showCategory(collectionPet) {
-    localStorage.setItem('category', JSON.stringify(collectionPet));
+    this.model.addCategoryToLocalStorage(collectionPet);
     this.router.controllerProduct.showAllGoods(collectionPet);
   }
-
-  // test(routerShowGoods) {
-  //   this.
-
-  // }
 }

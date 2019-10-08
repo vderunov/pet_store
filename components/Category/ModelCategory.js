@@ -12,6 +12,11 @@ export default class ModelCategory {
         collectionPet.push(elem);
       }
     });
+
     showCategory(collectionPet);
+  }
+
+  addCategoryToLocalStorage(collectionPet) {
+    localStorage.setItem('category', JSON.stringify(collectionPet));
   }
 }

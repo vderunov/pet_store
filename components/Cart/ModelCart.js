@@ -5,7 +5,6 @@ export default class ModelCart {
   }
 
   clearCartModel() {
-    console.log('clearCartModel from Cart');
     this.cart = {};
   }
 
@@ -83,10 +82,7 @@ export default class ModelCart {
     }
 
     this.saveToLocalStorageCart(this.cart);
-    this.controller.renderViewCart(
-      this.cart,
-      JSON.parse(localStorage.getItem('cart'))
-    );
+    this.controller.renderViewCart(this.cart);
   }
 
   checkCart() {

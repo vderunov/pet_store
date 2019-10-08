@@ -21,8 +21,7 @@ export default class ViewCart {
   }
 
   renderCart() {
-    let str = '';
-    str += `
+    document.querySelector('#root-modal-cart').innerHTML = `
     <div id="modal-overflow" uk-modal>
       <div class="uk-modal-dialog">
         <button class="uk-modal-close-default" type="button" uk-close></button>
@@ -32,9 +31,7 @@ export default class ViewCart {
             <div class="uk-modal-body" uk-overflow-auto>
               <div class="uk-overflow-auto">
                 <table class="uk-table uk-table-hover uk-table-middle uk-table-divider">
-                  <tbody id="listInCart">`;
-    str += `
-                  </tbody>
+                  <tbody id="listInCart"></tbody>
                 </table>
               </div>
             </div>
@@ -43,12 +40,9 @@ export default class ViewCart {
              Continue shopping
           </button>
           <button class="uk-button uk-button-primary" id="buy-btn" href="#modal-sections" uk-toggle
-          >buy</button
-        >
-      </>
+          >buy</button></>
     </div>
     </div>`;
-    document.querySelector('#root-modal-cart').innerHTML = str;
   }
 
   renderListInCart(cart) {
