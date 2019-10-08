@@ -1,8 +1,8 @@
-import Templater from '/src/templater.js';
+import Templater from '../../src/templater.js';
 
 export default class ViewSort {
   constructor() {
-    this.templater = new Templater('/components/Sort/sort.html');
+    this.templater = new Templater('../components/sort/sort.html');
   }
 
   render(sortBy) {

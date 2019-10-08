@@ -1,8 +1,8 @@
-import Templater from '/src/templater.js';
+import Templater from '../../src/templater.js';
 
 export default class ViewOrder {
   constructor() {
-    this.templater = new Templater('/components/Order/orderModal.html');
+    this.templater = new Templater('../components/order/orderModal.html');
     this.cartIcon = document.querySelector('[href="#modal-sections"]');
   }
 

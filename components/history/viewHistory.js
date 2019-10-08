@@ -1,8 +1,8 @@
-import Templater from '/src/templater.js';
+import Templater from '../../src/templater.js';
 
 export default class ViewHistory {
   constructor() {
-    this.templater = new Templater('/components/history/historyModal.html');
+    this.templater = new Templater('../components/history/historyModal.html');
   }
 
   renderHistoryModal(makeHistoryList) {

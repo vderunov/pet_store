@@ -1,8 +1,8 @@
-import Templater from '/src/templater.js';
+import Templater from '../../src/templater.js';
 
 export default class ViewSearch {
   constructor() {
-    this.templater = new Templater('/components/Search/search.html');
+    this.templater = new Templater('../components/search/search.html');
     this.rootCategory = document.querySelector('#root-category');
   }
 

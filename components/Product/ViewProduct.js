@@ -1,8 +1,8 @@
-import Templater from '/src/templater.js';
+import Templater from '../../src/templater.js';
 
 export default class ViewProduct {
   constructor() {
-    this.templater = new Templater('/components/Product/product.html');
+    this.templater = new Templater('/components/product/product.html');
   }
 
   render(data) {
