@@ -1,9 +1,9 @@
 export default class ModelSearch {
-  makeSortByInput(letters, showSortByInput) {
+  makeSortByInput(letters) {
     const val = letters.trim();
     const data = JSON.parse(localStorage.getItem('category'));
-
     const collectionPet = [];
+
     if (val !== '') {
       const regexp = new RegExp(`\\b${val}`, 'gi');
 
@@ -12,13 +12,13 @@ export default class ModelSearch {
           collectionPet.push(elem);
         }
       });
-      showSortByInput(collectionPet);
-    } else {
-      data.forEach(elem => {
-        collectionPet.push(elem);
-      });
-
-      showSortByInput(collectionPet);
+      return collectionPet;
     }
+
+    data.forEach(elem => {
+      collectionPet.push(elem);
+    });
+
+    return collectionPet;
   }
 }

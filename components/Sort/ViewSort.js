@@ -3,6 +3,7 @@ import Templater from '../../src/templater.js';
 export default class ViewSort {
   constructor() {
     this.templater = new Templater('../components/sort/sort.html');
+    this.templaterCollection = new Templater('/components/sort/product.html');
   }
 
   render(sortBy) {
@@ -13,6 +14,14 @@ export default class ViewSort {
       'click',
       sortBy
     );
+  }
+
+  renderSortCollection(data) {
+    const goods = document.querySelector('#root-goods');
+    goods.innerHTML = '';
+    data.forEach(elem => {
+      this.templaterCollection.load(elem, goods);
+    });
   }
 
   renderCheckbox(obj) {

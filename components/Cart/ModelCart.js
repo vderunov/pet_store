@@ -70,7 +70,7 @@ export default class ModelCart {
 
   setDisableOnButton(id) {
     document
-      .querySelector(`[data-id="${id}"]`, `.plus[data-art="${id}"]`)
+      .querySelector(`[data-id="${id}"]`)
       .setAttribute('disabled', 'disabled');
   }
 

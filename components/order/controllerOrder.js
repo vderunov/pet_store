@@ -5,50 +5,33 @@ export default class ControllerOrder {
   constructor() {
     this.view = new ViewOrder();
     this.model = new ModelOrder();
-    this.view.bindCartIcon(this.addEventOnCartIcon.bind(this));
+    this.view.addHandlerOnBuyBtn(this.buyBtnInitializer.bind(this));
   }
 
-  addEventOnCartIcon() {
-    this.model.getUserValueObj(this.transferFormValue.bind(this));
+  buyBtnInitializer() {
+    this.model.getUserValueObj();
+    this.totalPrice = this.model.getTotalPriceModel();
+    this.view.renderForm(this.model.userValue, this.validateForm.bind(this));
+    this.inputNodes = this.view.getInputDomNodes();
+    this.view.getDomNodeConfirmBtn(this.confirmBtnHandler.bind(this));
+    this.transferTotalPrice();
   }
 
-  validateFormInputs(event) {
-    this.model.makeValidationFormInputs(
-      event,
-      this.transferValidMessage.bind(this)
-    );
+  validateForm(event) {
+    this.model.makeValidationFormInputs(event);
+    this.transferValidMessage();
   }
 
-  getTotalPrice() {
-    this.model.getTotalPriceModel(this.transferTotalPrice.bind(this));
+  transferTotalPrice() {
+    this.view.showTotalPrice(this.totalPrice);
   }
 
-  transferTotalPrice(totalPrice) {
-    this.view.showTotalPrice(totalPrice);
+  transferValidMessage() {
+    this.view.showValidateMassage(this.model.parentNode, this.model.span);
   }
 
-  transferFormValue(userValueObj) {
-    this.view.renderForm(
-      userValueObj,
-      this.validateFormInputs.bind(this),
-      this.transferSendPurchaseMessage.bind(this),
-      this.getTotalPrice.bind(this)
-    );
-  }
-
-  transferValidMessage(parentNode, span) {
-    this.view.showValidateMassage(parentNode, span);
-  }
-
-  transferSendPurchaseMessage(
-    firstName,
-    lastName,
-    email,
-    phone,
-    address,
-    totalPrice
-  ) {
-    this.model.notify(firstName, lastName, email, phone, address, totalPrice);
-    this.model.createDataForEmailSend(firstName, lastName, email, totalPrice);
+  confirmBtnHandler() {
+    this.model.notify(this.inputNodes);
+    this.model.createDataForEmailSend(this.inputNodes);
   }
 }

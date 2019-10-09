@@ -3,11 +3,13 @@ import Templater from '../../src/templater.js';
 export default class ViewSearch {
   constructor() {
     this.templater = new Templater('../components/search/search.html');
-    this.rootCategory = document.querySelector('#root-category');
+    this.templaterProd = new Templater('../components/search/product.html');
   }
 
   addEventForActivateSearch(contrActivateSearch) {
-    this.rootCategory.addEventListener('click', contrActivateSearch);
+    document
+      .querySelector('#root-category')
+      .addEventListener('click', contrActivateSearch);
   }
 
   activateSearch() {
@@ -24,5 +26,13 @@ export default class ViewSearch {
       'input',
       sortByInput
     );
+  }
+
+  renderCollection(data) {
+    const goods = document.querySelector('#root-goods');
+    goods.innerHTML = '';
+    data.forEach(elem => {
+      this.templaterProd.load(elem, goods);
+    });
   }
 }

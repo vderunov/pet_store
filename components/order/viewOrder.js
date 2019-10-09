@@ -3,50 +3,39 @@ import Templater from '../../src/templater.js';
 export default class ViewOrder {
   constructor() {
     this.templater = new Templater('../components/order/orderModal.html');
-    this.cartIcon = document.querySelector('[href="#modal-sections"]');
   }
 
-  bindCartIcon(addEventOnCartIcon) {
-    this.cartIcon.addEventListener('click', addEventOnCartIcon);
+  addHandlerOnBuyBtn(buyBtnInitializer) {
+    document
+      .querySelector('#buy-btn')
+      .addEventListener('click', buyBtnInitializer);
   }
 
-  renderForm(
-    userValueObj,
-    validateFormInputs,
-    transferSendPurchaseMessage,
-    getTotalPrice
-  ) {
+  renderForm(userValue, validateForm) {
     this.templater.load(
-      userValueObj,
+      userValue,
       document.querySelector('#root-modal-order'),
       ['#firstName', '#lastName', '#email', '#phone', '#address'],
       'input',
-      validateFormInputs
+      validateForm
     );
+  }
 
-    this.totalPrice = document.querySelector('#total-price');
-    this.firstName = document.querySelector('#firstName');
-    this.lastName = document.querySelector('#lastName');
-    this.email = document.querySelector('#email');
-    this.phone = document.querySelector('#phone');
-    this.address = document.querySelector('#address');
-
-    getTotalPrice();
-
+  getDomNodeConfirmBtn(confirmBtnHandler) {
     document
       .querySelector('#confirm-btn')
-      .addEventListener(
-        'click',
-        transferSendPurchaseMessage.bind(
-          this,
-          this.firstName,
-          this.lastName,
-          this.email,
-          this.phone,
-          this.address,
-          this.totalPrice
-        )
-      );
+      .addEventListener('click', confirmBtnHandler);
+  }
+
+  getInputDomNodes() {
+    return {
+      totalPrice: document.querySelector('#total-price'),
+      firstName: document.querySelector('#firstName'),
+      lastName: document.querySelector('#lastName'),
+      email: document.querySelector('#email'),
+      phone: document.querySelector('#phone'),
+      address: document.querySelector('#address')
+    };
   }
 
   showValidateMassage(node, span) {
@@ -55,6 +44,6 @@ export default class ViewOrder {
   }
 
   showTotalPrice(totalPrice) {
-    this.totalPrice.innerHTML = totalPrice;
+    document.querySelector('#total-price').innerHTML = totalPrice;
   }
 }

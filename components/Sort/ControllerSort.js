@@ -2,15 +2,9 @@ import ModelSort from './modelSort.js';
 import ViewSort from './viewSort.js';
 
 export default class ControllerSort {
-  constructor(router) {
+  constructor() {
     this.model = new ModelSort();
     this.view = new ViewSort();
-    this.routerActiveCase = router.controllerProduct.getActiveCase.bind(
-      router.controllerProduct
-    );
-    this.routerShowGoods = router.controllerProduct.showAllGoods.bind(
-      router.controllerProduct
-    );
     this.init();
   }
 
@@ -31,7 +25,7 @@ export default class ControllerSort {
   }
 
   getProps(event) {
-    const data = this.routerActiveCase();
+    const data = this.model.getActiveCase();
     const { pet } = event.target.dataset;
 
     switch (pet) {
@@ -80,7 +74,7 @@ export default class ControllerSort {
   }
 
   sortBy(event) {
-    const data = this.routerActiveCase();
+    const data = this.model.getActiveCase();
 
     if (event.target.dataset.btn === 'up') {
       this.model.sortUp(data, this.showSortByPrice.bind(this));
@@ -100,6 +94,6 @@ export default class ControllerSort {
   }
 
   showSortByPrice(collectionPet) {
-    this.routerShowGoods(collectionPet);
+    this.view.renderSortCollection(collectionPet);
   }
 }

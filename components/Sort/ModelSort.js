@@ -3,6 +3,10 @@ export default class ModelSort {
     this.collectionPet = [];
   }
 
+  getActiveCase() {
+    return JSON.parse(localStorage.getItem('actualGoods'));
+  }
+
   sortUp(goods, showSortByPrice) {
     showSortByPrice(goods.sort((a, b) => (a.price > b.price ? 1 : -1)));
   }

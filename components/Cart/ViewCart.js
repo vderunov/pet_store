@@ -1,9 +1,5 @@
 export default class ViewCart {
   constructor() {
-    this.init();
-  }
-
-  init() {
     this.renderCart();
     this.renderListInCart();
   }
@@ -22,27 +18,30 @@ export default class ViewCart {
 
   renderCart() {
     document.querySelector('#root-modal-cart').innerHTML = `
-    <div id="modal-overflow" uk-modal>
-      <div class="uk-modal-dialog">
+<div id="modal-overflow" uk-modal>
+    <div class="uk-modal-dialog">
         <button class="uk-modal-close-default" type="button" uk-close></button>
-          <div class="uk-modal-header">
-              <h2 class="uk-modal-title">Cart</h2>
-          </div>
-            <div class="uk-modal-body" uk-overflow-auto>
-              <div class="uk-overflow-auto">
+        <div class="uk-modal-header">
+            <h2 class="uk-modal-title">Cart</h2>
+        </div>
+        <div class="uk-modal-body" uk-overflow-auto>
+            <div class="uk-overflow-auto">
                 <table class="uk-table uk-table-hover uk-table-middle uk-table-divider">
-                  <tbody id="listInCart"></tbody>
+                    <tbody id="listInCart"></tbody>
                 </table>
-              </div>
             </div>
-          <div class="uk-modal-footer uk-text-right">
-          <button class="uk-button uk-button-default uk-modal-close" type="button">
-             Continue shopping
-          </button>
-          <button class="uk-button uk-button-primary" id="buy-btn" href="#modal-sections" uk-toggle
-          >buy</button></>
+        </div>
+        <div class="uk-modal-footer uk-text-right">
+            <button class="uk-button uk-button-default uk-modal-close" type="button">
+                Continue shopping
+            </button>
+            <button class="uk-button uk-button-primary" id="buy-btn" href="#modal-sections" uk-toggle>
+                buy
+            </button>
+        </div>
     </div>
-    </div>`;
+</div>
+    `;
   }
 
   renderListInCart(cart) {

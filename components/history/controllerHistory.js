@@ -16,9 +16,9 @@ export default class ControllerHistory {
     );
   }
 
-  transferCreateHistoryStorage(listInCart, counterCart) {
+  transferCreateHistoryStorage() {
     this.model.createHistoryStorage();
-    this.model.clearCart(listInCart, counterCart);
+    this.model.clearCart(this.view.listInCart, this.view.counterCart);
     this.view.renderHistoryList();
   }
 }

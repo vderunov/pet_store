@@ -16,16 +16,13 @@ export default class ViewHistory {
   }
 
   getNodes(transferCreateHistoryStorage) {
-    const listInCart = document.querySelector('#listInCart');
-    const counterCart = document.querySelector('#counter-cart');
+    this.listInCart = document.querySelector('#listInCart');
+    this.counterCart = document.querySelector('#counter-cart');
     this.idHistoryList = document.querySelector('#historyList');
-    this.confirmBtn = document.querySelector('#confirm-btn');
+    const confirmBtn = document.querySelector('#confirm-btn');
 
-    if (this.confirmBtn) {
-      this.confirmBtn.addEventListener(
-        'click',
-        transferCreateHistoryStorage.bind(listInCart, counterCart)
-      );
+    if (confirmBtn) {
+      confirmBtn.addEventListener('click', transferCreateHistoryStorage);
     }
   }
 

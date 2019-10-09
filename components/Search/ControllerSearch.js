@@ -2,17 +2,10 @@ import ModelSearch from './modelSearch.js';
 import ViewSearch from './viewSearch.js';
 
 export default class ControllerSearch {
-  constructor(router) {
-    this.routerShowGoods = router.controllerProduct.showAllGoods.bind(
-      router.controllerProduct
-    );
+  constructor() {
     this.model = new ModelSearch();
     this.view = new ViewSearch();
     this.showNavSearch();
-    this.init();
-  }
-
-  init() {
     this.view.addEventForActivateSearch(this.contrActivateSearch.bind(this));
   }
 
@@ -28,11 +21,7 @@ export default class ControllerSearch {
     }
   }
 
-  sortByInput(e) {
-    this.model.makeSortByInput(e.target.value, this.showSortByInput.bind(this));
-  }
-
-  showSortByInput(collectionPet) {
-    this.routerShowGoods(collectionPet);
+  sortByInput(event) {
+    this.view.renderCollection(this.model.makeSortByInput(event.target.value));
   }
 }

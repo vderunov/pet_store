@@ -1,0 +1,16 @@
+<div>
+  <div class="uk-card uk-card-default uk-card-hover">
+    <div class="uk-card-media-top">
+      <img src="data/img/pets/{{ type }}/{{ name }}.jpg" alt="{{ name }}" />
+    </div>
+    <div class="uk-card-body">
+      <h3 class="uk-card-title">{{ name }}</h3>
+      <p>Price: {{ price }} USD</p>
+      <p>Gender: {{ gender }}</p>
+      <p>Quantity: {{ quantity }}</p>
+      <button class="uk-button uk-button-primary buy" data-id="{{ id }}">
+        add to cart
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,9 +1,6 @@
 export default class ModelProduct {
   loadGoodsFromJSON(showAllGoods) {
-    fetch(
-      // 'https://cors-anywhere.herokuapp.com/https://gentle-coast-49966.herokuapp.com/get-goods'
-      '/data/goods.json'
-    )
+    fetch('/data/goods.json')
       .then(res => res.json())
       .then(out => {
         this.addGoodsInLocalStorage(out);
@@ -13,5 +10,9 @@ export default class ModelProduct {
 
   addGoodsInLocalStorage(out) {
     localStorage.setItem('goods', JSON.stringify(out));
+  }
+
+  setActiveCase(data) {
+    localStorage.setItem('actualGoods', JSON.stringify(data));
   }
 }

@@ -1,10 +1,10 @@
 export default class ModelCategory {
-  makeCategory(pet, showCategory) {
+  makeCategory(pet) {
     const data = JSON.parse(localStorage.getItem('goods'));
     const collectionPet = [];
 
     if (pet === 'all') {
-      return showCategory(data);
+      return data;
     }
 
     data.forEach(elem => {
@@ -13,7 +13,7 @@ export default class ModelCategory {
       }
     });
 
-    showCategory(collectionPet);
+    return collectionPet;
   }
 
   addCategoryToLocalStorage(collectionPet) {

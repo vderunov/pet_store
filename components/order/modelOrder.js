@@ -11,11 +11,11 @@ export default class ModelOrder {
     };
   }
 
-  getUserValueObj(transferFormValue) {
-    let userValueObj = JSON.parse(localStorage.getItem('userInputsValue'));
+  getUserValueObj() {
+    this.userValue = JSON.parse(localStorage.getItem('userInputsValue'));
 
-    if (!userValueObj) {
-      userValueObj = {
+    if (!this.userValue) {
+      this.userValue = {
         firstName: '',
         lastName: '',
         email: '',
@@ -23,11 +23,9 @@ export default class ModelOrder {
         address: ''
       };
     }
-
-    transferFormValue(userValueObj);
   }
 
-  makeValidationFormInputs(event, transferValidMessage) {
+  makeValidationFormInputs(event) {
     const { target } = event;
     const input = target.id;
     const { value } = target;
@@ -41,8 +39,7 @@ export default class ModelOrder {
           value.match(reg),
           value,
           parentNode,
-          'Error: only alphabetic characters are allowed',
-          transferValidMessage
+          'Error: only alphabetic characters are allowed'
         );
         this.setInputsValueInLocalStorage('firstName', value);
         break;
@@ -52,8 +49,7 @@ export default class ModelOrder {
           value.match(reg),
           value,
           parentNode,
-          'Error: only alphabetic characters are allowed',
-          transferValidMessage
+          'Error: only alphabetic characters are allowed'
         );
         this.setInputsValueInLocalStorage('lastName', value);
         break;
@@ -63,8 +59,7 @@ export default class ModelOrder {
           value.match(reg),
           value,
           parentNode,
-          'Error: email address is invalid',
-          transferValidMessage
+          'Error: email address is invalid'
         );
         this.setInputsValueInLocalStorage('email', value);
         break;
@@ -74,8 +69,7 @@ export default class ModelOrder {
           value.match(reg),
           value,
           parentNode,
-          'Error: number is not correct',
-          transferValidMessage
+          'Error: number is not correct'
         );
         this.setInputsValueInLocalStorage('phone', value);
         break;
@@ -85,15 +79,14 @@ export default class ModelOrder {
           value.match(reg),
           value,
           parentNode,
-          'Error: Do not use intricate characters',
-          transferValidMessage
+          'Error: Do not use intricate characters'
         );
         this.setInputsValueInLocalStorage('address', value);
         break;
     }
   }
 
-  createMessage(match, value, parentNode, errMessage, transferValidMessage) {
+  createMessage(match, value, parentNode, errMessage) {
     const span = document.createElement('span');
 
     if (match) {
@@ -106,11 +99,11 @@ export default class ModelOrder {
       span.className = 'uk-label uk-label-warning uk-margin-small-left';
       span.innerHTML = errMessage;
     }
-
-    transferValidMessage(parentNode, span);
+    this.parentNode = parentNode;
+    this.span = span;
   }
 
-  getTotalPriceModel(transferTotalPrice) {
+  getTotalPriceModel() {
     const goods = JSON.parse(localStorage.getItem('goods'));
     const cart = JSON.parse(localStorage.getItem('cart'));
     let totalPrice = 0;
@@ -122,7 +115,8 @@ export default class ModelOrder {
         }
       });
     }
-    transferTotalPrice(totalPrice);
+
+    return totalPrice;
   }
 
   setInputsValueInLocalStorage(input, inputsValue) {
@@ -134,15 +128,21 @@ export default class ModelOrder {
     );
   }
 
-  notify(firstName, lastName, email, phone, address, totalPrice) {
-    const info = `${firstName.value} ${lastName.value} ${email.value} ${phone.value} ${address.value} ${totalPrice.innerHTML}`;
+  notify(inputNodes) {
+    const info = `
+    ${inputNodes.firstName.value} 
+    ${inputNodes.lastName.value} 
+    ${inputNodes.email.value} 
+    ${inputNodes.phone.value} 
+    ${inputNodes.address.value} 
+    ${inputNodes.totalPrice.innerHTML}`;
 
     fetch(
       `https://api.telegram.org/bot744059758:AAELsDJ3Df6N3y0zM_OIV8e2q2GTzvHOfEQ/sendmessage?chat_id=102249236&text=${info}`
     );
   }
 
-  createDataForEmailSend(firstName, lastName, email, totalPrice) {
+  createDataForEmailSend(inputNodes) {
     const cart = JSON.parse(localStorage.getItem('cart'));
     const goods = JSON.parse(localStorage.getItem('goods'));
     const arrOrder = [];
@@ -159,16 +159,16 @@ export default class ModelOrder {
         }
       });
     }
-    this.sendEmail(firstName, lastName, email, totalPrice, arrOrder);
+    this.sendEmail(inputNodes, arrOrder);
   }
 
-  sendEmail(firstName, lastName, email, totalPrice, arrOrder) {
+  sendEmail(inputNodes, arrOrder) {
     const url = 'http://so2niko.zzz.com.ua/ss/api.php?data=';
     const data = {
-      mail: email.value,
-      name: `${firstName.value} ${lastName.value}`,
+      mail: inputNodes.email.value,
+      name: `${inputNodes.firstName.value} ${inputNodes.lastName.value}`,
       purchase_data: arrOrder,
-      total_price: totalPrice.innerHTML
+      total_price: inputNodes.totalPrice.innerHTML
     };
     fetch(url + JSON.stringify(data), { mode: 'no-cors' });
   }

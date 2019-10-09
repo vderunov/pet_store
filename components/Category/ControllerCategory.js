@@ -18,20 +18,21 @@ export default class ControllerCategory {
     const { pet } = event.target.dataset;
     switch (pet) {
       case 'cats':
-        this.model.makeCategory('cat', this.showCategory.bind(this));
+        this.showCategory(this.model.makeCategory('cat'));
         break;
       case 'dogs':
-        this.model.makeCategory('dog', this.showCategory.bind(this));
+        this.showCategory(this.model.makeCategory('dog'));
         break;
       case 'fish':
-        this.model.makeCategory('fish', this.showCategory.bind(this));
+        this.showCategory(this.model.makeCategory('fish'));
         break;
       case 'birds':
-        this.model.makeCategory('bird', this.showCategory.bind(this));
+        this.showCategory(this.model.makeCategory('bird'));
         break;
-      default:
-        this.model.makeCategory('all', this.showCategory.bind(this));
+      default: {
+        this.showCategory(this.model.makeCategory('all'));
         break;
+      }
     }
   }
 
