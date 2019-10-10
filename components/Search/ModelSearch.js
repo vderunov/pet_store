@@ -12,6 +12,7 @@ export default class ModelSearch {
           collectionPet.push(elem);
         }
       });
+
       return collectionPet;
     }
 

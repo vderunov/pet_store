@@ -16,6 +16,10 @@ export default class ControllerCart {
       this.modalHandler.bind(this)
     );
     this.model.checkCart();
+    this.view.renderListInCart(
+      this.model.getDataCartFromLS(),
+      this.model.getDataFromLS()
+    );
   }
 
   clearCart() {
@@ -51,6 +55,6 @@ export default class ControllerCart {
 
   renderViewCart(cart) {
     this.model.getAmountGoodsCart();
-    this.view.renderListInCart(cart);
+    this.view.renderListInCart(cart, this.model.getDataFromLS());
   }
 }

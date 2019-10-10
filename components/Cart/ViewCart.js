@@ -1,7 +1,6 @@
 export default class ViewCart {
   constructor() {
     this.renderCart();
-    this.renderListInCart();
   }
 
   addHandlerToBuyBtns(addProductToCart, setDisabledBtn, modalHandler) {
@@ -44,12 +43,10 @@ export default class ViewCart {
     `;
   }
 
-  renderListInCart(cart) {
-    const localCart = cart || JSON.parse(localStorage.getItem('cart'));
-    const data = JSON.parse(localStorage.getItem('goods'));
-
+  renderListInCart(cart, data) {
     let str = '';
-    for (const key in localCart) {
+
+    for (const key in cart) {
       data.forEach(elem => {
         if (elem.id === Number(key)) {
           str += `
@@ -62,9 +59,9 @@ export default class ViewCart {
             <p class="uk-text-truncate">Breed: ${elem.name}</p>
             <p class="uk-text-truncate">Price: ${elem.price} USD</p>
             <button class="cart-btns minus" data-art="${key}">-</button>
-            <p class="uk-text-truncate">${localCart[key]}</p>
+            <p class="uk-text-truncate">${cart[key]}</p>
             <button class="cart-btns plus" data-art="${key}">+</button>
-            <p class="uk-text-truncate">${localCart[key] * elem.price} USD</p>
+            <p class="uk-text-truncate">${cart[key] * elem.price} USD</p>
        </td>
     </tr>`;
         }

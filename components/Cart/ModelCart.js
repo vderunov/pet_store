@@ -8,6 +8,14 @@ export default class ModelCart {
     this.cart = {};
   }
 
+  getDataFromLS() {
+    return JSON.parse(localStorage.getItem('goods'));
+  }
+
+  getDataCartFromLS() {
+    return JSON.parse(localStorage.getItem('cart'));
+  }
+
   getAmountGoodsCart() {
     const cart = JSON.parse(localStorage.getItem('cart'));
     const counterCart = document.querySelector('#counter-cart');

@@ -2,8 +2,8 @@ import ModelCategory from './modelCategory.js';
 import ViewCategory from './viewCategory.js';
 
 export default class ControllerCategory {
-  constructor(router) {
-    this.router = router;
+  constructor(observer) {
+    this.observer = observer;
     this.view = new ViewCategory();
     this.model = new ModelCategory();
     this.init();
@@ -38,6 +38,6 @@ export default class ControllerCategory {
 
   showCategory(collectionPet) {
     this.model.addCategoryToLocalStorage(collectionPet);
-    this.router.controllerProduct.showAllGoods(collectionPet);
+    this.observer.emit('made category', collectionPet);
   }
 }
