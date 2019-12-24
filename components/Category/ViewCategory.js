@@ -2,7 +2,7 @@ import Templater from '../../src/templater.js';
 
 export default class ViewCategory {
   constructor() {
-    this.templater = new Templater('../components/category/category.html');
+    this.templater = new Templater('./components/category/category.html');
   }
 
   render() {

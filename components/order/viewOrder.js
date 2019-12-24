@@ -2,7 +2,7 @@ import Templater from '../../src/templater.js';
 
 export default class ViewOrder {
   constructor() {
-    this.templater = new Templater('../components/order/orderModal.html');
+    this.templater = new Templater('./components/order/orderModal.html');
   }
 
   addHandlerOnBuyBtn(buyBtnInitializer) {

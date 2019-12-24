@@ -2,8 +2,8 @@ import Templater from '../../src/templater.js';
 
 export default class ViewSearch {
   constructor() {
-    this.templater = new Templater('../components/search/search.html');
-    this.templaterProd = new Templater('../components/search/product.html');
+    this.templater = new Templater('./components/search/search.html');
+    this.templaterProd = new Templater('./components/search/product.html');
   }
 
   addEventForActivateSearch(contrActivateSearch) {
